@@ -1,0 +1,70 @@
+@charset "utf-8";
+@import "./reset", "../partials/mixin", "../partials/variables";
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: "Stylish", sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: initial;
+    text-decoration: none;
+}
+
+button {
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 20px;
+    border-color: transparent;
+    background-color: $grayscale-7;
+    font-size: 16px;
+    line-height: 24px;
+    resize: none;
+    outline: 0;
+    &::placeholder {
+        color: $grayscale-4;
+    }
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+// 웹 접근성 처리
+.a11y-hidden {
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute;
+    width: 1px;
+    height: 1px;
+}
+
+.hidden {
+    position: absolute;
+    z-index: -1;
+    font-size: 1px;
+    color: transparent;
+}
