@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+// other colors
+$primary-color: #ffcc99;
+$secondary-color: #eeb5be;
+
+// grayscale
+$grayscale-1: #333;
+$grayscale-2: #999;
+$grayscale-3: #ccc;
+$grayscale-4: #e0e0e0;
+$grayscale-5: #fafafa;
+$grayscale-6: #fff;
+
+$pallette: (
+  (light, #333, #999, #ccc, #e0e0e0, #fafafa, #fff),
+  (dark, #fff, #fafafa, #e0e0e0, #ccc, #999, #333)
+);
+
+@mixin ThemeTransition {
+  transition:
+    background-color 0.25s ease-in-out,
+    color 0.25s ease-in-out;
+}
