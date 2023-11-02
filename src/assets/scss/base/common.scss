@@ -24,6 +24,7 @@ a {
 button {
   border: 0;
   background-color: transparent;
+  font-family: 'Stylish', sans-serif;
   cursor: pointer;
 }
 
@@ -36,6 +37,14 @@ main {
   z-index: 1;
   flex: 1;
   width: 100%;
+}
+
+.main {
+  padding-bottom: 50px;
+}
+
+input {
+  font-family: 'Stylish', sans-serif;
 }
 
 textarea {
@@ -56,6 +65,10 @@ textarea {
   }
 }
 
+.flex {
+  display: flex;
+}
+
 // 웹 접근성 처리
 .a11y-hidden {
   overflow: hidden;
@@ -74,7 +87,7 @@ textarea {
 
 // 테마 스위치
 .theme-switcher {
-  @include Position(fixed, $top: 0, $right: 0);
+  @include Position(fixed, $top: 10px, $right: 10px);
   z-index: 100;
   font-size: 0;
 
@@ -149,7 +162,6 @@ textarea {
   $grayscale-6
 ) {
   [data-theme='#{$theme}'] {
-    @include ThemeTransition;
     background-color: $grayscale-6;
     color: $grayscale-1;
   }

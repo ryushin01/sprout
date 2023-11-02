@@ -1,5 +1,7 @@
 import { useRef } from 'react';
+import Header from './components/Header/Header';
 import Router from './Router';
+import Gnb from './components/Gnb/Gnb';
 import './assets/scss/base/common.scss';
 
 const App = () => {
@@ -13,7 +15,14 @@ const App = () => {
   return (
     <>
       <div ref={targetRef} data-theme="light">
+        {/* isLogin */}
+        <Header />
+
         <Router />
+
+        {/* isLogin */}
+        <Gnb />
+
         <div className="theme-switcher">
           <input id="theme-switcher" type="checkbox" onClick={themeSwitcher} />
           <label htmlFor="theme-switcher">

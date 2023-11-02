@@ -1,0 +1,53 @@
+@charset "utf-8";
+@import '../../assets/scss/partials/mixin.scss',
+  '../../assets/scss/partials/theme.scss';
+
+@mixin theme(
+  $theme,
+  $grayscale-1,
+  $grayscale-2,
+  $grayscale-3,
+  $grayscale-4,
+  $grayscale-5,
+  $grayscale-6
+) {
+  [data-theme='#{$theme}'] {
+    .header {
+      @include Position(sticky, $top: 0);
+      @include FlexCenter();
+      z-index: 1;
+      height: 50px;
+      border-bottom: 1px solid $grayscale-3;
+      font-size: 28px;
+
+      h1 {
+        position: relative;
+        display: inline-block;
+        margin-top: 6px;
+
+        &::before {
+          @include Position(absolute, $top: -10px, $left: -4px);
+          content: '';
+          display: block;
+          width: 16px;
+          height: 16px;
+          background: url(images/login/icon_hoki.png) no-repeat center/cover;
+        }
+      }
+    }
+  }
+}
+
+@each $theme, $grayscale-1, $grayscale-2, $grayscale-3, $grayscale-4,
+  $grayscale-5, $grayscale-6 in $pallette
+{
+  @include theme(
+    $theme,
+    $grayscale-1,
+    $grayscale-2,
+    $grayscale-3,
+    $grayscale-4,
+    $grayscale-5,
+    $grayscale-6
+  );
+}

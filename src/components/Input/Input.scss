@@ -1,0 +1,51 @@
+@charset "utf-8";
+@import '../../assets/scss/partials/mixin.scss',
+  '../../assets/scss/partials/theme.scss';
+
+@mixin theme(
+  $theme,
+  $grayscale-1,
+  $grayscale-2,
+  $grayscale-3,
+  $grayscale-4,
+  $grayscale-5,
+  $grayscale-6
+) {
+  [data-theme='#{$theme}'] {
+    .input-label {
+      display: flex;
+      gap: 12px;
+
+      .input {
+        flex: 1;
+        padding: 0 10px;
+        height: 50px;
+        border: 0 none;
+        border-bottom: 1px $grayscale-1 solid;
+        background-color: $grayscale-6;
+        font-size: 16px;
+        line-height: 50px;
+        color: $grayscale-1;
+        outline: 0;
+
+        &::placeholder {
+          color: $grayscale-1;
+        }
+      }
+    }
+  }
+}
+
+@each $theme, $grayscale-1, $grayscale-2, $grayscale-3, $grayscale-4,
+  $grayscale-5, $grayscale-6 in $pallette
+{
+  @include theme(
+    $theme,
+    $grayscale-1,
+    $grayscale-2,
+    $grayscale-3,
+    $grayscale-4,
+    $grayscale-5,
+    $grayscale-6
+  );
+}

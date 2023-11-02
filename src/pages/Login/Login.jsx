@@ -1,3 +1,5 @@
+import './Login.scss';
+
 /**
  * Login.js logics
  * @property {function} connectToKakaoLogin   - 카카오 로그인 버튼 클릭 시 실행되는 함수입니다.
@@ -15,14 +17,24 @@ const Login = () => {
   };
 
   return (
-    <main id="main" className="main">
-      <button type="button">
-        <img
-          src="/images/login/kakao_login_large_wide.png"
-          alt="카카오 로그인"
-          onClick={connectToKakaoLogin}
-        />
-      </button>
+    <main>
+      <div className="login">
+        <section className="logo-section">
+          <hgroup>
+            <h1>HOKI</h1>
+            <h2>나를 담는 공간</h2>
+          </hgroup>
+        </section>
+        <section className="login-section">
+          <button type="button">
+            <img
+              src="/images/login/kakao_login_large_wide.png"
+              alt="카카오 로그인"
+              onClick={connectToKakaoLogin}
+            />
+          </button>
+        </section>
+      </div>
     </main>
   );
 };

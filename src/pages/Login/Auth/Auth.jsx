@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { API } from '../../../config';
 import axios from 'axios';
 
 /**
@@ -7,25 +9,52 @@ import axios from 'axios';
  */
 
 const Auth = () => {
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const navigate = useNavigate();
+  // 3. 파라미터 중에서
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
-  // const searchParam = searchParams.get('code');
+  const searchParam = searchParams.get('code');
 
-  const getKakaoLogin = () => {
-    axios({
-      method: 'get',
-      url: 'http://10.58.52.118:8000/users/kakao/callback?code=${searchParam}',
+  // const getKakaoLogin = () => {
+  //   axios({
+  //     method: 'get',
+  //     url: `${API.KAKAO_LOGIN}?code=${searchParam}`,
+  //     headers: {
+  //       'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+  //     },
+  //     data: {},
+  //   })
+  //     .then(response => {
+  //       console.log(response);
+  //       localStorage.setItem('accessToken', response.accessToken);
+  //       navigate('/signup');
+  //     })
+  //     .catch(error => {
+  //       console.log(error.message);
+  //     });
+  // };
+
+  console.log(searchParam);
+
+  const getSnsCode = () => {
+    fetch(`${API.KAKAO_LOGIN}?code=${searchParam}`, {
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
       },
-      data: {},
     })
-      .then(response => console.log(response.data))
-      .catch(err => {
-        console.log(err.message);
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
       });
   };
+
+  useEffect(() => {
+    getSnsCode();
+
+    // getKakaoLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   return <></>;
 };
