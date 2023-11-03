@@ -1,7 +1,5 @@
 @charset "utf-8";
-@import '../../assets/scss/partials/grid_system.scss',
-  '../../assets/scss/partials/media_query.scss',
-  '../../assets/scss/partials/mixin.scss',
+@import '../../assets/scss/partials/mixin.scss',
   '../../assets/scss/partials/theme.scss';
 
 @mixin theme(
@@ -14,20 +12,28 @@
   $grayscale-6
 ) {
   [data-theme='#{$theme}'] {
-    .login {
+    .logo-area {
       @include FlexCenter();
-      flex-direction: column;
       flex: 1;
-      max-width: 600px;
-      width: 100%;
+      text-align: center;
 
-      .sns-area {
-        padding: 4%;
-        font-size: 0;
+      h1 {
+        position: relative;
+        display: inline-block;
+        font-size: 6rem;
 
-        button {
-          font-size: inherit;
+        &::before {
+          @include Position(absolute, $top: -14px, $left: -6px);
+          content: '';
+          display: block;
+          width: 32px;
+          height: 32px;
+          background: url(images/login/icon_hoki.png) no-repeat center/cover;
         }
+      }
+
+      h2 {
+        font-size: 2rem;
       }
     }
   }

@@ -9,7 +9,7 @@
  * }
  */
 
-@mixin GridSystem($desktop: null, $tablet: null, $mobile: null, $default: 1fr) {
+@mixin GridSystem($desktop: 1, $tablet: 1, $mobile: 1, $default: 1fr) {
   display: grid;
   column-gap: 4%;
   height: 100%;

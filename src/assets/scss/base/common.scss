@@ -38,10 +38,11 @@ main {
   z-index: 1;
   flex: 1;
   width: 100%;
-}
 
-.main {
-  padding-bottom: 50px;
+  &.main {
+    @include FlexCenter();
+    flex-direction: column;
+  }
 }
 
 input {
