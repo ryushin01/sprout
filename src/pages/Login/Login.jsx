@@ -1,3 +1,8 @@
+import BIG_BANNER_SWIPER_DATA from '../../data/BigBannerSwiperData';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
 import './Login.scss';
 
 /**
@@ -17,15 +22,34 @@ const Login = () => {
   };
 
   return (
-    <main>
-      <div className="login">
-        <section className="logo-section">
+    <main className="login">
+      <section className="banner-section">
+        <div className="swiper-area">
+          <Swiper
+            modules={[Autoplay, EffectFade]}
+            autoplay={{ delay: 3500 }}
+            effect="fade"
+            loop
+          >
+            {BIG_BANNER_SWIPER_DATA.map(({ id, image, title }) => {
+              return (
+                <SwiperSlide key={id}>
+                  <img src={image} alt={title} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+      </section>
+
+      <section className="login-section">
+        <div className="logo-area">
           <hgroup>
             <h1>HOKI</h1>
             <h2>나를 담는 공간</h2>
           </hgroup>
-        </section>
-        <section className="login-section">
+        </div>
+        <div className="sns-area">
           <button type="button">
             <img
               src="/images/login/kakao_login_large_wide.png"
@@ -33,8 +57,8 @@ const Login = () => {
               onClick={connectToKakaoLogin}
             />
           </button>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
   );
 };

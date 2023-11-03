@@ -10,6 +10,7 @@
 html,
 body {
   font-family: 'Stylish', sans-serif;
+  font-size: 14px;
 }
 
 li {
@@ -62,6 +63,7 @@ textarea {
     display: inherit;
     flex-direction: inherit;
     flex: 1;
+    height: 100%;
   }
 }
 

@@ -1,5 +1,7 @@
 @charset "utf-8";
-@import '../../assets/scss/partials/mixin.scss',
+@import '../../assets/scss/partials/grid_system.scss',
+  '../../assets/scss/partials/media_query.scss',
+  '../../assets/scss/partials/mixin.scss',
   '../../assets/scss/partials/theme.scss';
 
 @mixin theme(
@@ -13,45 +15,85 @@
 ) {
   [data-theme='#{$theme}'] {
     .login {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100vh;
+      @include GridSystem(2, 2, 1, 50%);
+      overflow: hidden;
+      padding: 0 4%;
 
-      .logo-section {
+      section {
         @include FlexCenter();
-        flex: 1;
-        text-align: center;
+        flex-direction: column;
+      }
 
-        h1 {
-          position: relative;
-          font-size: 20vw;
+      .banner-section {
+        position: relative;
+        width: 100%;
 
-          &::before {
-            @include Position(absolute, $top: -16px, $left: -6px);
-            content: '';
-            display: block;
-            width: 32px;
-            height: 32px;
-            background: url(images/login/icon_hoki.png) no-repeat center/cover;
+        .swiper-area {
+          width: inherit;
+          text-align: center;
+
+          img {
+            position: relative;
+            width: 80%;
+            height: 100%;
+            border-radius: 8px;
+            object-fit: contain;
+
+            &::before {
+              @include Position(absolute, 0, 0, 0, 0);
+              content: '';
+              background-color: rgba(0, 0, 0, 0.2);
+              z-index: 10;
+            }
           }
-
-          & + h2 {
-            margin-top: 4vw;
-          }
-        }
-
-        h2 {
-          font-size: 8vw;
         }
       }
 
       .login-section {
-        padding: 4vw;
-        font-size: 0;
+        flex-direction: column;
 
-        button {
-          font-size: inherit;
+        .logo-area {
+          @include FlexCenter();
+          flex: 1;
+          text-align: center;
+
+          h1 {
+            position: relative;
+            display: inline-block;
+            font-size: 6rem;
+
+            &::before {
+              @include Position(absolute, $top: -14px, $left: -6px);
+              content: '';
+              display: block;
+              width: 32px;
+              height: 32px;
+              background: url(images/login/icon_hoki.png) no-repeat center/cover;
+            }
+          }
+
+          h2 {
+            font-size: 2rem;
+          }
+        }
+
+        .sns-area {
+          padding: 4%;
+          font-size: 0;
+
+          button {
+            font-size: inherit;
+          }
+        }
+      }
+    }
+
+    @include Mobile {
+      .login {
+        @include GridSystem(2, 2, 1, 1fr);
+
+        .banner-section {
+          display: none !important;
         }
       }
     }
