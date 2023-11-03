@@ -15,49 +15,87 @@
 ) {
   [data-theme='#{$theme}'] {
     .login {
-      @include GridSystem(2, 2, 1);
+      @include GridSystem(2, 2, 1, 50%);
+      overflow: hidden;
+      padding: 0 4%;
 
-      // display: flex;
-      // flex-direction: column;
-      // align-items: center;
-      // height: 100vh;
+      section {
+        @include FlexCenter();
+        flex-direction: column;
+      }
 
-      // .logo-section {
-      //   @include FlexCenter();
-      //   flex: 1;
-      //   text-align: center;
+      .banner-section {
+        position: relative;
+        width: 100%;
 
-      //   h1 {
-      //     position: relative;
-      //     font-size: 20vw;
+        .swiper-area {
+          width: inherit;
+          text-align: center;
 
-      //     &::before {
-      //       @include Position(absolute, $top: -16px, $left: -6px);
-      //       content: '';
-      //       display: block;
-      //       width: 32px;
-      //       height: 32px;
-      //       background: url(images/login/icon_hoki.png) no-repeat center/cover;
-      //     }
+          img {
+            position: relative;
+            width: 80%;
+            height: 100%;
+            border-radius: 8px;
+            object-fit: contain;
 
-      //     & + h2 {
-      //       margin-top: 4vw;
-      //     }
-      //   }
+            &::before {
+              @include Position(absolute, 0, 0, 0, 0);
+              content: '';
+              background-color: rgba(0, 0, 0, 0.2);
+              z-index: 10;
+            }
+          }
+        }
+      }
 
-      //   h2 {
-      //     font-size: 8vw;
-      //   }
-      // }
+      .login-section {
+        flex-direction: column;
 
-      // .login-section {
-      //   padding: 4vw;
-      //   font-size: 0;
+        .logo-area {
+          @include FlexCenter();
+          flex: 1;
+          text-align: center;
 
-      //   button {
-      //     font-size: inherit;
-      //   }
-      // }
+          h1 {
+            position: relative;
+            display: inline-block;
+            font-size: 6rem;
+
+            &::before {
+              @include Position(absolute, $top: -14px, $left: -6px);
+              content: '';
+              display: block;
+              width: 32px;
+              height: 32px;
+              background: url(images/login/icon_hoki.png) no-repeat center/cover;
+            }
+          }
+
+          h2 {
+            font-size: 2rem;
+          }
+        }
+
+        .sns-area {
+          padding: 4%;
+          font-size: 0;
+
+          button {
+            font-size: inherit;
+          }
+        }
+      }
+    }
+
+    @include Mobile {
+      .login {
+        @include GridSystem(2, 2, 1, 1fr);
+
+        .banner-section {
+          display: none !important;
+        }
+      }
     }
   }
 }
@@ -74,10 +112,4 @@
     $grayscale-5,
     $grayscale-6
   );
-}
-
-@include Mobile {
-  .event-banner-section {
-    display: none;
-  }
 }

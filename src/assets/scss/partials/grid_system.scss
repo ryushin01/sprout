@@ -9,23 +9,23 @@
  * }
  */
 
-@mixin GridSystem($desktop: null, $tablet: null, $mobile: null) {
+@mixin GridSystem($desktop: null, $tablet: null, $mobile: null, $default: 1fr) {
   display: grid;
-  column-gap: 10px;
+  column-gap: 4%;
   height: 100%;
 
   // Desktop
   @media all and (min-width: 1366px) {
-    grid-template-columns: repeat($desktop, 1fr);
+    grid-template-columns: repeat($desktop, $default);
   }
 
   // Tablet
   @media all and (min-width: 768px) and (max-width: 1366px) {
-    grid-template-columns: repeat($tablet, 1fr);
+    grid-template-columns: repeat($tablet, $default);
   }
 
   // Mobile
   @media (min-width: 320px) and (max-width: 768px) {
-    grid-template-columns: repeat($mobile, 1fr);
+    grid-template-columns: repeat($mobile, $default);
   }
 }

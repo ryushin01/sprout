@@ -12,17 +12,14 @@ const App = () => {
       : targetRef.current.setAttribute('data-theme', 'light');
   };
 
+  const isLogin = false;
+
   return (
     <>
       <div ref={targetRef} data-theme="light">
-        {/* isLogin */}
-        <Header />
-
+        {isLogin && <Header />}
+        {isLogin && <Gnb />}
         <Router />
-
-        {/* isLogin */}
-        <Gnb />
-
         <div className="theme-switcher">
           <input id="theme-switcher" type="checkbox" onClick={themeSwitcher} />
           <label htmlFor="theme-switcher">
