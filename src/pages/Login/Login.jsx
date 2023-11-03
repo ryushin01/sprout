@@ -17,15 +17,17 @@ const Login = () => {
   };
 
   return (
-    <main>
-      <div className="login">
-        <section className="logo-section">
+    <main className="login">
+      <section className="event-banner-section">이벤트 배너 롤링</section>
+
+      <section>
+        <div className="logo-section">
           <hgroup>
             <h1>HOKI</h1>
             <h2>나를 담는 공간</h2>
           </hgroup>
-        </section>
-        <section className="login-section">
+        </div>
+        <div className="login-section">
           <button type="button">
             <img
               src="/images/login/kakao_login_large_wide.png"
@@ -33,8 +35,8 @@ const Login = () => {
               onClick={connectToKakaoLogin}
             />
           </button>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
   );
 };
