@@ -8,8 +8,8 @@ import './Signup.scss';
 
 /**
  * Signup.js logics
- * @property {function} postSignup      - 회원 가입을 위한 유저 정보를 서버로 보내는 함수입니다.
  * @property {function} typingSentry    - 인풋 입력 시 값을 모니터링하기 위한 함수입니다.
+ * @property {function} postSignup      - 회원 가입을 위한 유저 정보를 서버로 보내는 함수입니다.
  */
 
 const Signup = () => {
@@ -18,8 +18,10 @@ const Signup = () => {
     nickname: '',
     password: '',
     passwordCheck: '',
-    interests: '',
   });
+
+  // 관심사를 저장하기 위한 useState
+  const [interests, setInterests] = useState({});
 
   // 닉네임 중복 검사 후 상태 저장을 위한 useState
   const [isDuplicatedNickname, setIsDuplicatedNickname] = useState(false);
@@ -28,14 +30,25 @@ const Signup = () => {
   const nicknameRef = useRef(null);
 
   const typingSentry = e => {
-    const { name, value } = e.target;
+    const { name, value, checked } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
+    setInterests({ ...interests, [value]: checked });
   };
+
+  console.log(interests, Object.keys(interests).length);
 
   const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9])/;
   const isPasswordValid = passwordRegExp.test(userInfo.password);
   const isPasswordCheckValid = userInfo.password === userInfo.passwordCheck;
   const isValidCheck = isPasswordValid && isPasswordCheckValid;
+
+  const aaa = Object.values(interests);
+  console.log(typeof aaa);
+  // console.log(aaa.filter(true));
+
+  // const isInterestValid = interests.length < 4;
+
+  // console.log(isInterestValid);
 
   const postDuplicatedNickname = () => {
     fetch('/data/duplicate.json', {
@@ -65,8 +78,6 @@ const Signup = () => {
   const postSignup = e => {
     e.preventDefault();
   };
-
-  console.log(userInfo);
 
   return (
     <main className="signup">

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { API } from '../../../config';
-import axios from 'axios';
+// import axios from 'axios';
 
 /**
  * Auth.js logics
