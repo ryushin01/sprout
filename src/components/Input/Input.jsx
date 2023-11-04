@@ -1,7 +1,7 @@
 import Button from '../Button/Button';
 import './Input.scss';
 
-const Input = ({ type = 'text', name, placeholder, isButton }) => {
+const Input = ({ type = 'text', name, placeholder, status, isButton }) => {
   return (
     <div className="input-wrap">
       <label className="input-label">
@@ -10,11 +10,11 @@ const Input = ({ type = 'text', name, placeholder, isButton }) => {
           type={type}
           name={name}
           placeholder={placeholder}
+          status={status}
         />
-        {isButton && (
-          <Button type="button" shape="outline" content="중복 확인" />
-        )}
+        {status === 'error' && <p>error</p>}
       </label>
+      {isButton && <Button type="button" shape="outline" content="중복 확인" />}
     </div>
   );
 };

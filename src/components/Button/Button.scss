@@ -17,16 +17,27 @@
       height: 50px;
       padding: 0 20px;
       border: 1px transparent solid;
+      border-radius: 4px;
       font-size: 16px;
-      border-color: $grayscale-1;
+      border-color: $grayscale-3;
 
       &[shape='solid'] {
-        background-color: $grayscale-1;
+        background-color: $grayscale-3;
         color: $grayscale-6;
+
+        &:active {
+          border-color: $primary-color;
+          background-color: $primary-color;
+        }
       }
 
       &[shape='outline'] {
-        color: $grayscale-1;
+        color: $grayscale-2;
+
+        &:active {
+          border-color: $primary-color;
+          color: $primary-color;
+        }
       }
     }
   }

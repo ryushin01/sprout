@@ -1,5 +1,6 @@
 @charset "utf-8";
-@import '../../assets/scss/partials/mixin.scss',
+@import '../../assets/scss/partials/media_query.scss',
+  '../../assets/scss/partials/mixin.scss',
   '../../assets/scss/partials/theme.scss';
 
 @mixin theme(
@@ -12,69 +13,90 @@
   $grayscale-6
 ) {
   [data-theme='#{$theme}'] {
-    .signup-form {
-      padding: 4vw;
+    .signup {
+      @include FlexCenter();
 
-      fieldset {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+      & > section {
+        flex: 1;
       }
+    }
 
-      .file-upload {
-        display: flex;
-        height: 100%;
-        & > div {
-          flex: 1;
-        }
-        .left-area {
+    .signup-section {
+      @include FlexCenter();
+      flex: 1;
+
+      .signup-form {
+        width: 100%;
+        padding: 5%;
+
+        fieldset {
           display: flex;
           flex-direction: column;
-          textarea {
-            height: 100%;
+          gap: 30px;
+
+          h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: $grayscale-1;
           }
         }
-        .right-area {
+
+        .input-box {
           display: flex;
           flex-direction: column;
-          & > div {
-            display: inherit;
-          }
-          .upload-name {
+          gap: 30px;
+        }
+
+        .file-upload {
+          display: flex;
+          gap: 10px;
+
+          .preview-wrap {
             flex: 1;
-            height: 50px;
-            padding: 0 10px;
-            vertical-align: middle;
+            padding: 2vw;
+            border: 1px $grayscale-3 solid;
+            border-radius: 4px;
+
+            .preview {
+              position: relative;
+              display: block;
+              width: 100%;
+              height: 100%;
+              z-index: -1;
+              object-fit: contain;
+              border-radius: 4px;
+
+              &[src*='image']::before {
+                display: none;
+              }
+
+              &::before {
+                @include FlexCenter;
+                content: '선택한 이미지를 확인하세요.';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background-color: $grayscale-6;
+                font-size: 16px;
+                color: $grayscale-2;
+              }
+            }
           }
+
           label {
-            display: inline-block;
+            @include FlexCenter();
             height: 50px;
             padding: 0 20px;
-            line-height: 50px;
-            vertical-align: middle;
+            border-radius: 4px;
+            border: 1px solid $grayscale-3;
+            font-size: 16px;
+            color: $grayscale-2;
             cursor: pointer;
+            white-space: nowrap;
           }
-          .preview {
-            position: relative;
-            display: block;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            object-fit: contain;
-            &[src*='image']::before {
-              display: none;
-            }
-            &::before {
-              @include FlexCenter;
-              content: '선택한 이미지를 확인하실 수 있습니다.';
-              position: absolute;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              left: 0;
-              font-size: 16px;
-            }
-          }
+
           input[type='file'] {
             position: absolute;
             width: 0;
@@ -84,6 +106,34 @@
             border: 0;
           }
         }
+
+        .chip-area {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+      }
+    }
+
+    @include Desktop {
+      .preview-wrap {
+        height: 10vw;
+      }
+    }
+
+    @include Tablet {
+      .preview-wrap {
+        height: 20vw;
+      }
+    }
+
+    @include Mobile {
+      .logo-section {
+        display: none;
+      }
+
+      .preview-wrap {
+        height: 50vw;
       }
     }
   }

@@ -12,24 +12,45 @@
   $grayscale-6
 ) {
   [data-theme='#{$theme}'] {
-    .input-label {
+    .input-wrap {
       display: flex;
-      gap: 12px;
+      gap: 10px;
 
-      .input {
+      .input-label {
+        position: relative;
         flex: 1;
-        padding: 0 10px;
-        height: 50px;
-        border: 0 none;
-        border-bottom: 1px $grayscale-1 solid;
-        background-color: $grayscale-6;
-        font-size: 16px;
-        line-height: 50px;
-        color: $grayscale-1;
-        outline: 0;
 
-        &::placeholder {
+        .input {
+          width: 100%;
+          height: 50px;
+          padding: 0 10px;
+          border: solid 1px $grayscale-3;
+          border-radius: 4px;
+          background-color: $grayscale-6;
+          font-size: 16px;
+          line-height: 50px;
           color: $grayscale-1;
+          outline: 0;
+
+          &::placeholder {
+            color: $grayscale-2;
+          }
+
+          &[status='done'] {
+            border-color: $primary-color;
+            color: $primary-color;
+          }
+
+          &[status='error'] {
+            border-color: $secondary-color;
+            color: $secondary-color;
+          }
+        }
+
+        p {
+          @include Position(absolute, $bottom: -16px, $left: 10px);
+          font-size: 16px;
+          color: $secondary-color;
         }
       }
     }
