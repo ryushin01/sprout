@@ -95,6 +95,11 @@
             color: $grayscale-2;
             cursor: pointer;
             white-space: nowrap;
+
+            &:active {
+              border-color: $primary-color;
+              color: $primary-color;
+            }
           }
 
           input[type='file'] {
