@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import axios from 'axios';
 import INTERESTS_DATA from '../../data/InterestsData';
 import Chip from '../../components/Chip/Chip';
 import LogoArea from '../../components/LogoArea/LogoArea';
@@ -9,6 +10,7 @@ import './Signup.scss';
 /**
  * Signup.js logics
  * @property {function} typingSentry              - 인풋 입력 시 값을 모니터링하기 위한 함수입니다.
+ * @property {function} changedProfileImage       - 프로필 이미지 업로드를 위한 함수입니다. 프로필 이미지 변경 즉시 서버 전송합니다.
  * @property {function} postDuplicatedNickname    - 닉네임 중복 확인을 위한 함수입니다.
  * @property {function} postSignup                - 회원 가입을 위한 유저 정보를 서버로 보내는 함수입니다.
  */
@@ -19,6 +21,11 @@ const Signup = () => {
     nickname: '',
     password: '',
     passwordCheck: '',
+  });
+
+  // 프로필 이미지 업로드를 위한 useState
+  const [profileImage, setProfileImage] = useState({
+    src: '',
   });
 
   // 관심사를 저장하기 위한 useState
@@ -71,55 +78,48 @@ const Signup = () => {
   const isValidCheck =
     isPasswordValid && isPasswordCheckValid && isInterestsValid;
 
-  // const formData = new FormData();
-  // const addFile = e => {
-  //   // let reader = new FileReader();
-  //   // reader.onload = function (e) {
-  //   //   setFile(e.target.result);
-  //   // };
-  //   // reader.readAsDataURL(e.target.files[0]);
+  // changedProfileImage 함수의 주석 상세 설명
+  /**
+   * 1번: 프로필 이미지 미리보기 기능과 프로필 이미지 서버 전송에 공통으로 사용하는 변수입니다.
+   * 2~5번: 프로필 이미지 미리보기 기능과 관련된 소스 코드입니다.
+   * 6~8번: 프로필 이미지 서버 전송과 관련된 소스 코드입니다.
+   */
+  const changedProfileImage = e => {
+    // 1. file 타입 input의 files에 접근해 첫 번째 index 데이터를 변수화합니다.
+    const file = e.target.files[0];
 
-  //   const img = e.target.files[0];
-  //   formData.append('file', img);
-  //   for (const keyValue of formData) {
-  //     console.log(keyValue);
-
-  //     const aa = keyValue[1];
-  //   }
-  // };
-
-  // const imageUpload = e => {
-  //   e.preventDefault();
-  //   fetch('data/orderMock.json', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data',
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {});
-  // };
-
-  // 프로필 이미지 업로드를 위한 useState
-  const [profileImage, setProfileImage] = useState({
-    src: '',
-  });
-
-  const inputImgRef = useRef(null);
-
-  const handleImgChange = () => {
-    const file = inputImgRef.current.files[0];
+    // 2. 파일 객체가 없는 경우는 함수를 종료합니다. (early return)
     if (!file) {
       return;
     }
+
+    // 3. new 연산자로 FileReader 객체를 생성합니다.
     const reader = new FileReader();
+
+    // 4. 파일 객체를 읽은 후 데이터 URL로 변환합니다.
     reader.readAsDataURL(file);
+
+    // 5. 로드될 때 setter 함수 안에 src key에 value를 넣습니다.
     reader.onloadend = () => {
       setProfileImage({ ...profileImage, src: reader.result });
     };
-  };
 
-  console.log(profileImage);
+    // 6. 프로필 이미지를 서버로 전송하기 위해 JavaScript 내장 객체인 formData를 생성합니다.
+    const formData = new FormData();
+
+    // 7. formData에 append를 사용해 key, value를 넣습니다.
+    formData.append('files', file);
+
+    // 8. axios로 서버 전송을 준비합니다. native fetch에서 Content-Type은 multipart/form-data로 지정해야 하지만, axios에서는 기본값이 multipart/form-data입니다. 여기서는 명시하기 위해 작성합니다.
+    axios({
+      method: 'post',
+      url: '/api/files/images',
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  };
 
   const postDuplicatedNickname = () => {
     fetch('/data/duplicate.json', {
@@ -217,8 +217,7 @@ const Signup = () => {
                     id="file"
                     type="file"
                     accept="image/*"
-                    ref={inputImgRef}
-                    onChange={handleImgChange}
+                    onChange={changedProfileImage}
                   />
                   <label htmlFor="file">사진 선택</label>
                 </div>
