@@ -101,6 +101,21 @@
             background-color: $primary-color;
           }
         }
+
+        p {
+          @include Ellipsis($multi: true, $line: 3);
+          margin-top: 12px;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+      }
+
+      .comment {
+        button {
+          padding: 12px 0;
+          font-size: 14px;
+          color: $grayscale-2;
+        }
       }
     }
 
