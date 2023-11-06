@@ -1,5 +1,5 @@
-// import { useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Portal from '../Modal/Portal';
 import Modal from '../Modal/Modal';
 import { ReactComponent as IconHome } from '../../assets/images/icon_home.svg';
@@ -8,9 +8,8 @@ import { ReactComponent as IconTop } from '../../assets/images/icon_top.svg';
 import './Gnb.scss';
 
 const Gnb = () => {
-  // const navigate = useNavigate();
-
   const [modalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const modalHandler = () => {
     setModalOpen(prev => !prev);
@@ -36,7 +35,7 @@ const Gnb = () => {
     <nav className="gnb">
       <ul>
         <li>
-          <button type="button">
+          <button type="button" onClick={() => navigate('/feed')}>
             <IconHome />
           </button>
         </li>

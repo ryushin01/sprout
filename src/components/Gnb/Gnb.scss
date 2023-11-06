@@ -14,7 +14,7 @@
 ) {
   [data-theme='#{$theme}'] {
     .gnb {
-      @include Position(fixed, $left: 0, $top: 250px, $bottom: 0);
+      @include Position(fixed, $left: 0, $top: 30%, $bottom: 0);
       z-index: 10;
       width: 100px;
       height: auto;

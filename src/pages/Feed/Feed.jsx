@@ -1,3 +1,4 @@
+import FeedList from './FeedList/FeedList';
 import './Feed.scss';
 
 /**
@@ -8,7 +9,9 @@ import './Feed.scss';
 const Feed = () => {
   return (
     <main className="feed">
-      <section>feed</section>
+      <section className="feed-section">
+        <FeedList />
+      </section>
     </main>
   );
 };

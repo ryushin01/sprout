@@ -15,11 +15,24 @@
   [data-theme='#{$theme}'] {
     .feed {
       padding-left: 100px;
+      padding-bottom: 0;
+
+      .feed-section {
+        width: 70%;
+        margin: 0 auto;
+        padding: 0;
+      }
     }
 
     @include Mobile {
       .feed {
         padding-left: 0;
+        padding-bottom: 50px;
+
+        .feed-section {
+          width: 100%;
+          padding: 0 12px;
+        }
       }
     }
   }

@@ -16,9 +16,9 @@
     .header {
       @include Position(fixed, $left: 0, $top: 0);
       @include FlexCenter();
-      z-index: 1;
+      z-index: 100;
       width: 100px;
-      height: 250px;
+      height: 30%;
       border-right: 1px solid $grayscale-3;
       border-bottom: 0;
       background-color: $grayscale-6;
