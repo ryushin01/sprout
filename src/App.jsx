@@ -12,7 +12,7 @@ const App = () => {
       : targetRef.current.setAttribute('data-theme', 'light');
   };
 
-  const isLogin = false;
+  const isLogin = true;
 
   return (
     <>
