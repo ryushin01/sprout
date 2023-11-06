@@ -33,15 +33,16 @@
           outline: 0;
 
           &::placeholder {
+            font-size: 14px;
             color: $grayscale-2;
           }
 
-          &[status='done'] {
+          &:focus[data-validation='true'] {
             border-color: $primary-color;
             color: $primary-color;
           }
 
-          &[status='error'] {
+          &:focus[data-validation='false'] {
             border-color: $secondary-color;
             color: $secondary-color;
           }
