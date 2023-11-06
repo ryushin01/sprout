@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "text": "피드 내용 1",
+  "isMine": true,
+  "userId": 123,
+  "createdAt": "2023-11-06 12:34:56",
+  "images": [
+    { "src": "/images/feed/hoki_1.jpg", "text": "alt_text_1" },
+    { "src": "/images/feed/hoki_2.jpg", "text": "alt_text_2" },
+    { "src": "/images/feed/hoki_3.jpg", "text": "alt_text_3" }
+  ],
+  "commentCount": 5,
+  "nickname": "hoki"
+}
