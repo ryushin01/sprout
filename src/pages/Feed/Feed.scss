@@ -13,7 +13,15 @@
   $grayscale-6
 ) {
   [data-theme='#{$theme}'] {
-    //
+    .feed {
+      padding-left: 100px;
+    }
+
+    @include Mobile {
+      .feed {
+        padding-left: 0;
+      }
+    }
   }
 }
 
