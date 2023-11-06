@@ -8,8 +8,9 @@ import './Signup.scss';
 
 /**
  * Signup.js logics
- * @property {function} typingSentry    - 인풋 입력 시 값을 모니터링하기 위한 함수입니다.
- * @property {function} postSignup      - 회원 가입을 위한 유저 정보를 서버로 보내는 함수입니다.
+ * @property {function} typingSentry              - 인풋 입력 시 값을 모니터링하기 위한 함수입니다.
+ * @property {function} postDuplicatedNickname    - 닉네임 중복 확인을 위한 함수입니다.
+ * @property {function} postSignup                - 회원 가입을 위한 유저 정보를 서버로 보내는 함수입니다.
  */
 
 const Signup = () => {
@@ -21,7 +22,28 @@ const Signup = () => {
   });
 
   // 관심사를 저장하기 위한 useState
-  const [interests, setInterests] = useState({});
+  const [interests, setInterests] = useState({
+    game: false,
+    movie: false,
+    restaurant: false,
+    music: false,
+    mbti: false,
+    celebrity: false,
+    date: false,
+    job: false,
+    alcohol: false,
+    car: false,
+    fashion: false,
+    interior: false,
+    festival: false,
+    device: false,
+    baby: false,
+    beauty: false,
+    tip: false,
+    cooking: false,
+    camping: false,
+    trip: false,
+  });
 
   // 닉네임 중복 검사 후 상태 저장을 위한 useState
   const [isDuplicatedNickname, setIsDuplicatedNickname] = useState(false);
@@ -35,20 +57,69 @@ const Signup = () => {
     setInterests({ ...interests, [value]: checked });
   };
 
-  console.log(interests, Object.keys(interests).length);
-
   const passwordRegExp = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9])/;
   const isPasswordValid = passwordRegExp.test(userInfo.password);
   const isPasswordCheckValid = userInfo.password === userInfo.passwordCheck;
-  const isValidCheck = isPasswordValid && isPasswordCheckValid;
+  const interestsValues = Object.values(interests);
+  const interestsCheckedArr = interestsValues.filter(Boolean);
+  const isInterestsValid = interestsCheckedArr.length < 4;
 
-  const aaa = Object.values(interests);
-  console.log(typeof aaa);
-  // console.log(aaa.filter(true));
+  if (!isInterestsValid) {
+    alert('관심사 최대 갯수를 초과했습니다. 최대 3개까지 선택 가능합니다.');
+  }
 
-  // const isInterestValid = interests.length < 4;
+  const isValidCheck =
+    isPasswordValid && isPasswordCheckValid && isInterestsValid;
 
-  // console.log(isInterestValid);
+  // const formData = new FormData();
+  // const addFile = e => {
+  //   // let reader = new FileReader();
+  //   // reader.onload = function (e) {
+  //   //   setFile(e.target.result);
+  //   // };
+  //   // reader.readAsDataURL(e.target.files[0]);
+
+  //   const img = e.target.files[0];
+  //   formData.append('file', img);
+  //   for (const keyValue of formData) {
+  //     console.log(keyValue);
+
+  //     const aa = keyValue[1];
+  //   }
+  // };
+
+  // const imageUpload = e => {
+  //   e.preventDefault();
+  //   fetch('data/orderMock.json', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {});
+  // };
+
+  // 프로필 이미지 업로드를 위한 useState
+  const [profileImage, setProfileImage] = useState({
+    src: '',
+  });
+
+  const inputImgRef = useRef(null);
+
+  const handleImgChange = () => {
+    const file = inputImgRef.current.files[0];
+    if (!file) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setProfileImage({ ...profileImage, src: reader.result });
+    };
+  };
+
+  console.log(profileImage);
 
   const postDuplicatedNickname = () => {
     fetch('/data/duplicate.json', {
@@ -77,6 +148,25 @@ const Signup = () => {
 
   const postSignup = e => {
     e.preventDefault();
+
+    fetch('/data/signup.json', {
+      // fetch(`${API.USERS}/duplicate`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        nickname: userInfo.nickname,
+        password: userInfo.password,
+        interests: interests,
+      }),
+    })
+      .then(response => response.json())
+      .then(result => {
+        if (result.message === 'SUCCESS') {
+          console.log(result);
+        }
+      });
   };
 
   return (
@@ -116,23 +206,24 @@ const Signup = () => {
                 />
               </div>
             </div>
-            {/* <div className="input-group">
+            <div className="input-group">
               <h3>프로필 사진을 업로드해주세요.</h3>
               <div className="input-box">
                 <div className="file-upload">
                   <div className="preview-wrap">
-                    <img className="preview" src={file} />
+                    <img className="preview" src={profileImage.src} />
                   </div>
                   <input
                     id="file"
                     type="file"
                     accept="image/*"
-                    onChange={addFile}
+                    ref={inputImgRef}
+                    onChange={handleImgChange}
                   />
                   <label htmlFor="file">사진 선택</label>
                 </div>
               </div>
-            </div> */}
+            </div>
             <div className="input-group">
               <h3>관심사 등록을 해주세요. (최소 0개 / 최대 3개)</h3>
               <div className="input-box">
