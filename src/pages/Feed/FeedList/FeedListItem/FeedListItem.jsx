@@ -12,31 +12,23 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './FeedListItem.scss';
 
-import BIG_BANNER_SWIPER_DATA from '../../../../data/BigBannerSwiperData';
+/**
+ * FeedListItem.js logics
+ * @property {function} modalHandler          - 모달 팝업 관련 함수입니다.
+ * @property {function} getFeedList           - 피드 목록 데이터를 받아오는 함수입니다.
+ * @property {function} switchDateStringify   - 피드 업로드 일자를 문자열로 변환하는 함수입니다.
+ */
 
 const FeedListItem = () => {
   const defaultProfileImage = '/images/feed/default_profile_image.png';
   const [loading, setLoading] = useState(false);
   const [feedData, setFeedData] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
+  const profileImage = null;
 
   const modalHandler = () => {
     setModalOpen(prev => !prev);
   };
-
-  useEffect(() => {
-    const close = e => {
-      if (e.keyCode === 27) {
-        setModalOpen(false);
-      }
-    };
-
-    window.addEventListener('keydown', close);
-    setLoading(true);
-    getFeedList();
-  }, []);
-
-  const profileImage = null;
 
   const getFeedList = () => {
     axios({
@@ -50,7 +42,7 @@ const FeedListItem = () => {
       .then(response => {
         if (response.status === 200) {
           console.log(response);
-          setFeedData(response.data);
+          setFeedData(response?.data);
           setLoading(false);
         }
       })
@@ -59,8 +51,42 @@ const FeedListItem = () => {
       });
   };
 
-  const { id, text, isMine, userId, createdAt, commentCount, nickname } =
-    feedData;
+  const { id, text, isMine, userId, commentCount, nickname } = feedData;
+
+  const switchDateStringify = postDate => {
+    const currentDate = new Date();
+    const postDateObj = new Date(postDate);
+    const timeDifference = currentDate - postDateObj;
+    const seconds = Math.floor(timeDifference / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    if (days > 0) {
+      return `${days}일 전`;
+    } else if (hours > 0) {
+      return `${hours}시간 전`;
+    } else if (minutes > 0) {
+      return `${minutes}분 전`;
+    } else {
+      return `방금 전`;
+    }
+  };
+
+  const refinedDate = switchDateStringify(feedData?.createdAt);
+
+  useEffect(() => {
+    const close = e => {
+      if (e.keyCode === 27) {
+        setModalOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', close);
+    setLoading(true);
+    getFeedList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -76,7 +102,7 @@ const FeedListItem = () => {
               <strong>{nickname}</strong>
             </div>
             <div className="right-split">
-              <span>{createdAt}</span>
+              <span>{refinedDate}</span>
             </div>
           </div>
           <div className="content">
