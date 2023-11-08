@@ -1,14 +1,76 @@
-{
-  "id": 1,
-  "text": "피드 내용 1",
-  "isMine": true,
-  "userId": 123,
-  "createdAt": "2023-11-01 12:34:56",
-  "images": [
-    { "src": "/images/feed/hoki_1.jpg", "text": "alt_text_1" },
-    { "src": "/images/feed/hoki_2.jpg", "text": "alt_text_2" },
-    { "src": "/images/feed/hoki_3.jpg", "text": "alt_text_3" }
-  ],
-  "commentCount": 5,
-  "nickname": "hoki"
-}
+[
+  {
+    "id": 1,
+    "text": "캠핑장에서 계속 먹는다.",
+    "is_mine": false,
+    "user_id": 1,
+    "created_at": "2023-08-14 23:30:00",
+    "images": [
+      { "src": "/images/feed/mockup/001/01.jpg", "text": "alt_text_1" },
+      { "src": "/images/feed/mockup/001/02.jpg", "text": "alt_text_2" },
+      { "src": "/images/feed/mockup/001/03.jpg", "text": "alt_text_3" },
+      { "src": "/images/feed/mockup/001/04.jpg", "text": "alt_text_4" },
+      { "src": "/images/feed/mockup/001/05.jpg", "text": "alt_text_5" }
+    ],
+    "profile_image": "",
+    "comment_count": 5,
+    "nickname": "pigeon"
+  },
+  {
+    "id": 2,
+    "text": "호영이는 셀카보다 이쪽이 더 어울려",
+    "is_mine": true,
+    "user_id": 2,
+    "created_at": "2023-11-01 12:34:56",
+    "images": [
+      { "src": "/images/feed/mockup/002/01.jpg", "text": "alt_text_1" },
+      { "src": "/images/feed/mockup/002/02.jpg", "text": "alt_text_2" },
+      { "src": "/images/feed/mockup/002/03.jpg", "text": "alt_text_3" }
+    ],
+    "profile_image": "/images/feed/mockup/002/profile_image.png",
+    "comment_count": 300,
+    "nickname": "hoki"
+  },
+  {
+    "id": 3,
+    "text": "위코드 탁구 연합회 회장",
+    "is_mine": false,
+    "user_id": 3,
+    "created_at": "2023-11-08 15:25:00",
+    "images": [
+      { "src": "/images/feed/mockup/003/01.gif", "text": "alt_text_1" }
+    ],
+    "profile_image": "",
+    "comment_count": 5000,
+    "nickname": "TableTennisLover"
+  },
+  {
+    "id": 4,
+    "text": "before & after",
+    "is_mine": true,
+    "user_id": 4,
+    "created_at": "2023-11-07 15:25:00",
+    "images": [
+      { "src": "/images/feed/mockup/004/01.gif", "text": "alt_text_1" },
+      { "src": "/images/feed/mockup/004/02.gif", "text": "alt_text_2" },
+      { "src": "/images/feed/mockup/004/03.png", "text": "alt_text_3" }
+    ],
+    "profile_image": "/images/feed/mockup/004/profile_image.png",
+    "comment_count": 9999,
+    "nickname": "hoki"
+  },
+  {
+    "id": 5,
+    "text": "즐거운 사진 모음",
+    "is_mine": false,
+    "user_id": 5,
+    "created_at": "2023-11-08 15:55:00",
+    "images": [
+      { "src": "/images/feed/mockup/005/01.jpg", "text": "alt_text_1" },
+      { "src": "/images/feed/mockup/005/02.jpg", "text": "alt_text_2" }
+    ],
+    "profile_image": "",
+    "comment_count": 20000,
+    "nickname": "funnyGuy"
+  }
+]

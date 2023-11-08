@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { ReactComponent as IconPrevArrow } from '../../../../assets/images/icon_prev_arrow.svg';
 import { ReactComponent as IconNextArrow } from '../../../../assets/images/icon_next_arrow.svg';
-import Loading from '../../../Loading/Loading';
 import Portal from '../../../../components/Modal/Portal';
 import Modal from '../../../../components/Modal/Modal';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,43 +13,27 @@ import './FeedListItem.scss';
 /**
  * FeedListItem.js logics
  * @property {function} modalHandler          - 모달 팝업 관련 함수입니다.
- * @property {function} getFeedList           - 피드 목록 데이터를 받아오는 함수입니다.
  * @property {function} switchDateStringify   - 피드 업로드 일자를 문자열로 변환하는 함수입니다.
  */
 
-const FeedListItem = () => {
-  const defaultProfileImage = '/images/feed/default_profile_image.png';
-  const [loading, setLoading] = useState(false);
-  const [feedData, setFeedData] = useState('');
+const FeedListItem = props => {
   const [modalOpen, setModalOpen] = useState(false);
-  const profileImage = null;
+  const defaultProfileImage = '/images/feed/default_profile_image.png';
+  const {
+    id,
+    text,
+    is_mine,
+    user_id,
+    created_at,
+    images,
+    comment_count,
+    nickname,
+    profile_image,
+  } = props;
 
   const modalHandler = () => {
     setModalOpen(prev => !prev);
   };
-
-  const getFeedList = () => {
-    axios({
-      method: 'get',
-      url: '/data/FeedListData.json',
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: localStorage.getItem('accessToken'),
-      },
-    })
-      .then(response => {
-        if (response.status === 200) {
-          console.log(response);
-          setFeedData(response?.data);
-          setLoading(false);
-        }
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
-  };
-
-  const { id, text, isMine, userId, commentCount, nickname } = feedData;
 
   const switchDateStringify = postDate => {
     const currentDate = new Date();
@@ -73,7 +55,7 @@ const FeedListItem = () => {
     }
   };
 
-  const refinedDate = switchDateStringify(feedData?.createdAt);
+  const refinedDate = switchDateStringify(created_at);
 
   useEffect(() => {
     const close = e => {
@@ -81,23 +63,18 @@ const FeedListItem = () => {
         setModalOpen(false);
       }
     };
-
     window.addEventListener('keydown', close);
-    setLoading(true);
-    getFeedList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      {loading && <Loading />}
       <article className="feed-list-item">
         <div>
           <div className="info">
             <div className="left-split">
               <img
-                src={profileImage === null ? defaultProfileImage : profileImage}
-                alt="`${nickname}` 님의 프로필 사진"
+                src={profile_image === '' ? defaultProfileImage : profile_image}
+                alt={`${nickname} 님의 프로필 사진`}
               />
               <strong>{nickname}</strong>
             </div>
@@ -116,7 +93,7 @@ const FeedListItem = () => {
                 }}
                 pagination={{ clickable: false }}
               >
-                {feedData?.images?.map(({ src, text }, index) => {
+                {images?.map(({ src, text }, index) => {
                   return (
                     <SwiperSlide key={index}>
                       <picture>
@@ -129,7 +106,6 @@ const FeedListItem = () => {
                     </SwiperSlide>
                   );
                 })}
-
                 <div className="swiper-controller">
                   <button type="button" className="swiper-prev-btn">
                     <IconPrevArrow />
@@ -142,10 +118,9 @@ const FeedListItem = () => {
             </div>
             <p>{text}</p>
           </div>
-
           <div className="comment">
             <button type="button" onClick={modalHandler}>
-              댓글 {commentCount}개 모두 보기
+              댓글 {comment_count?.toLocaleString()}개 모두 보기
             </button>
             <Portal>
               {modalOpen && (
@@ -156,7 +131,6 @@ const FeedListItem = () => {
               )}
             </Portal>
           </div>
-
           <div>
             [3차] 댓글 달기 영역: 로그인한 프로필 이미지 + textarea 처리 필요
           </div>
