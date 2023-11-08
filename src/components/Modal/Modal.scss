@@ -1,0 +1,19 @@
+@charset "utf-8";
+@import '../../assets/scss/partials/media_query.scss',
+  '../../assets/scss/partials/mixin.scss';
+
+.modal-popup {
+  @include Position(fixed, 0, 0, 0, 0);
+  z-index: 100;
+
+  .backdrop {
+    @include Position(fixed, 0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .modal-content {
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+  }
+}

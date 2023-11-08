@@ -1,0 +1,150 @@
+@charset "utf-8";
+@import '../../../../assets/scss/partials/media_query.scss',
+  '../../../../assets/scss/partials/mixin.scss',
+  '../../../../assets/scss/partials/theme.scss';
+
+@mixin theme(
+  $theme,
+  $grayscale-1,
+  $grayscale-2,
+  $grayscale-3,
+  $grayscale-4,
+  $grayscale-5,
+  $grayscale-6
+) {
+  [data-theme='#{$theme}'] {
+    .feed-list-item {
+      position: relative;
+      padding: 24px 0;
+
+      .info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 16px;
+
+        .left-split {
+          @include FlexCenter();
+          gap: 12px;
+
+          img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: contain;
+          }
+        }
+
+        & + .content {
+          margin-top: 12px;
+        }
+      }
+
+      .content {
+        .swiper-area {
+          margin: 0;
+          font-size: 0;
+
+          .swiper {
+            border: 1px #eee solid;
+
+            .swiper-slide {
+              position: relative;
+              padding-bottom: 56.25%;
+
+              img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+          }
+
+          .swiper-prev-btn,
+          .swiper-next-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.1);
+
+            svg {
+              fill: #fff;
+              path {
+                fill: inherit;
+              }
+            }
+
+            &:active {
+              svg {
+                fill: $primary-color;
+              }
+            }
+          }
+
+          .swiper-prev-btn {
+            left: 4px;
+          }
+
+          .swiper-next-btn {
+            right: 4px;
+          }
+
+          .swiper-pagination {
+            bottom: 12px;
+          }
+
+          .swiper-pagination-bullet-active {
+            background-color: $primary-color;
+          }
+        }
+
+        p {
+          @include Ellipsis($multi: true, $line: 3);
+          margin-top: 12px;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+      }
+
+      .comment {
+        button {
+          padding: 12px 0;
+          font-size: 14px;
+          color: $grayscale-2;
+        }
+      }
+    }
+
+    @include Mobile {
+      .feed {
+        padding-left: 0;
+
+        .content {
+          .swiper-area {
+            margin: 0 -12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@each $theme, $grayscale-1, $grayscale-2, $grayscale-3, $grayscale-4,
+  $grayscale-5, $grayscale-6 in $pallette
+{
+  @include theme(
+    $theme,
+    $grayscale-1,
+    $grayscale-2,
+    $grayscale-3,
+    $grayscale-4,
+    $grayscale-5,
+    $grayscale-6
+  );
+}
