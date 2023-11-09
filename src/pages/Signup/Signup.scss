@@ -118,6 +118,20 @@
           gap: 10px;
         }
       }
+
+      .signup-complete {
+        @include FlexCenter();
+        flex-direction: column;
+        gap: 40px;
+
+        .lottie-wrap {
+          width: 24vw;
+        }
+
+        span {
+          font-size: 24px;
+        }
+      }
     }
 
     @include Desktop {

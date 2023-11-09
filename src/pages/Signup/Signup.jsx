@@ -1,10 +1,14 @@
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Lottie from 'lottie-react';
+import complete from '../../lottie/complete.json';
 import INTERESTS_DATA from '../../data/InterestsData';
 import Chip from '../../components/Chip/Chip';
 import LogoArea from '../../components/LogoArea/LogoArea';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
+
 import './Signup.scss';
 
 /**
@@ -16,6 +20,11 @@ import './Signup.scss';
  */
 
 const Signup = () => {
+  const navigate = useNavigate();
+
+  // 회원 가입 완료 여부를 저장하는 useState
+  const [signupComplete, setSignupComplete] = useState(true);
+
   // 회원 가입을 위한 유저 정보를 저장하는 useState
   const [userInfo, setUserInfo] = useState({
     nickname: '',
@@ -165,6 +174,7 @@ const Signup = () => {
       .then(result => {
         if (result.message === 'SUCCESS') {
           console.log(result);
+          setSignupComplete(true);
         }
       });
   };
@@ -175,81 +185,98 @@ const Signup = () => {
         <LogoArea />
       </section>
       <section className="signup-section">
-        <form className="signup-form" onChange={typingSentry}>
-          <fieldset>
-            <legend className="hidden">추가 정보 입력</legend>
-            <div className="input-group">
-              <h3>필수 입력 사항입니다.</h3>
-              <div className="input-box">
-                <Input
-                  name="nickname"
-                  placeholder="닉네임을 입력하세요"
-                  isButton
-                  isValidation={isDuplicatedNickname}
-                  buttonFunction={postDuplicatedNickname}
-                  forwardRef={nicknameRef}
-                  required
-                />
-                <Input
-                  type="password"
-                  name="password"
-                  placeholder="비밀번호는 숫자와 대문자 포함 8자 이상 입력하세요"
-                  isValidation={isPasswordValid}
-                  required
-                />
-                <Input
-                  type="password"
-                  name="passwordCheck"
-                  placeholder="같은 비밀번호를 입력하세요"
-                  isValidation={isPasswordCheckValid}
-                  required
-                />
-              </div>
-            </div>
-            <div className="input-group">
-              <h3>프로필 사진을 업로드해주세요.</h3>
-              <div className="input-box">
-                <div className="file-upload">
-                  <div className="preview-wrap">
-                    <img className="preview" src={profileImage.src} />
-                  </div>
-                  <input
-                    id="file"
-                    type="file"
-                    accept="image/*"
-                    onChange={changedProfileImage}
+        {!signupComplete && (
+          <form className="signup-form" onChange={typingSentry}>
+            <fieldset>
+              <legend className="hidden">추가 정보 입력</legend>
+              <div className="input-group">
+                <h3>필수 입력 사항입니다.</h3>
+                <div className="input-box">
+                  <Input
+                    name="nickname"
+                    placeholder="닉네임을 입력하세요"
+                    isButton
+                    isValidation={isDuplicatedNickname}
+                    buttonFunction={postDuplicatedNickname}
+                    forwardRef={nicknameRef}
+                    required
                   />
-                  <label htmlFor="file">사진 선택</label>
+                  <Input
+                    type="password"
+                    name="password"
+                    placeholder="비밀번호는 숫자와 대문자 포함 8자 이상 입력하세요"
+                    isValidation={isPasswordValid}
+                    required
+                  />
+                  <Input
+                    type="password"
+                    name="passwordCheck"
+                    placeholder="같은 비밀번호를 입력하세요"
+                    isValidation={isPasswordCheckValid}
+                    required
+                  />
                 </div>
               </div>
-            </div>
-            <div className="input-group">
-              <h3>관심사 등록을 해주세요. (최소 0개 / 최대 3개)</h3>
-              <div className="input-box">
-                <div className="chip-area">
-                  {INTERESTS_DATA?.map(({ value, content }, index) => {
-                    return (
-                      <Chip
-                        key={index}
-                        name="interests"
-                        value={value}
-                        content={content}
-                      />
-                    );
-                  })}
+              <div className="input-group">
+                <h3>프로필 사진을 업로드해주세요.</h3>
+                <div className="input-box">
+                  <div className="file-upload">
+                    <div className="preview-wrap">
+                      <img className="preview" src={profileImage.src} />
+                    </div>
+                    <input
+                      id="file"
+                      type="file"
+                      accept="image/*"
+                      onChange={changedProfileImage}
+                    />
+                    <label htmlFor="file">사진 선택</label>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="input-group">
+                <h3>관심사 등록을 해주세요. (최소 0개 / 최대 3개)</h3>
+                <div className="input-box">
+                  <div className="chip-area">
+                    {INTERESTS_DATA?.map(({ value, content }, index) => {
+                      return (
+                        <Chip
+                          key={index}
+                          name="interests"
+                          value={value}
+                          content={content}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
 
+              <Button
+                type="submit"
+                shape="solid"
+                content="회원 가입"
+                onClick={postSignup}
+                disabled={!isValidCheck}
+              />
+            </fieldset>
+          </form>
+        )}
+
+        {signupComplete && (
+          <div className="signup-complete">
+            <div className="lottie-wrap">
+              <Lottie animationData={complete} />
+            </div>
+            <span>회원 가입이 완료되었습니다.</span>
             <Button
-              type="submit"
-              shape="solid"
-              content="회원 가입"
-              onClick={postSignup}
-              disabled={!isValidCheck}
+              type="button"
+              shape="outline"
+              content="로그인하러 가기"
+              onClick={() => navigate('/')}
             />
-          </fieldset>
-        </form>
+          </div>
+        )}
       </section>
     </main>
   );
