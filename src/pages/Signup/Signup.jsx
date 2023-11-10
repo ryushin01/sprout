@@ -8,7 +8,6 @@ import Chip from '../../components/Chip/Chip';
 import LogoArea from '../../components/LogoArea/LogoArea';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
-
 import './Signup.scss';
 
 /**
@@ -23,7 +22,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   // 회원 가입 완료 여부를 저장하는 useState
-  const [signupComplete, setSignupComplete] = useState(true);
+  const [signupComplete, setSignupComplete] = useState(false);
 
   // 회원 가입을 위한 유저 정보를 저장하는 useState
   const [userInfo, setUserInfo] = useState({

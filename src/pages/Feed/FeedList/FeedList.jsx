@@ -17,12 +17,14 @@ const FeedList = () => {
     axios({
       method: 'get',
       url: '/data/FeedListData.json',
+      // url: 'http://localhost:8000/feed',
       headers: {
         'Content-Type': 'application/json',
-        authorization: localStorage.getItem('accessToken'),
+        // authorization: localStorage.getItem('accessToken'),
       },
     })
       .then(response => {
+        console.log(response);
         if (response.status === 200) {
           console.log(response);
           setFeedData(response?.data.reverse());

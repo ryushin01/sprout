@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
+import { ReactComponent as IconMore } from '../../../../assets/images/icon_more.svg';
+import { ReactComponent as IconDelete } from '../../../../assets/images/icon_delete.svg';
+import { ReactComponent as IconEdit } from '../../../../assets/images/icon_edit.svg';
+import { ReactComponent as IconCancel } from '../../../../assets/images/icon_close.svg';
 import { ReactComponent as IconPrevArrow } from '../../../../assets/images/icon_prev_arrow.svg';
 import { ReactComponent as IconNextArrow } from '../../../../assets/images/icon_next_arrow.svg';
 import Portal from '../../../../components/Modal/Portal';
 import Modal from '../../../../components/Modal/Modal';
+import FeedDetail from '../../../../components/Modal/Contents/FeedDetail';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -17,8 +22,10 @@ import './FeedListItem.scss';
  */
 
 const FeedListItem = props => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const defaultProfileImage = '/images/feed/default_profile_image.png';
+
   const {
     id,
     text,
@@ -31,8 +38,14 @@ const FeedListItem = props => {
     profile_image,
   } = props;
 
+  const dropdownHandler = () => {
+    setDropdownOpen(prev => !prev);
+    setModalOpen(false);
+  };
+
   const modalHandler = () => {
     setModalOpen(prev => !prev);
+    setDropdownOpen(false);
   };
 
   const switchDateStringify = postDate => {
@@ -57,10 +70,15 @@ const FeedListItem = props => {
 
   const refinedDate = switchDateStringify(created_at);
 
+  const postComment = e => {
+    e.preventDefault();
+  };
+
   useEffect(() => {
     const close = e => {
       if (e.keyCode === 27) {
         setModalOpen(false);
+        setDropdownOpen(false);
       }
     };
     window.addEventListener('keydown', close);
@@ -76,10 +94,39 @@ const FeedListItem = props => {
                 src={profile_image === '' ? defaultProfileImage : profile_image}
                 alt={`${nickname} 님의 프로필 사진`}
               />
-              <strong>{nickname}</strong>
+              <div>
+                <strong>{nickname}</strong>
+                <span>{refinedDate}</span>
+              </div>
             </div>
             <div className="right-split">
-              <span>{refinedDate}</span>
+              <div className="dropdown">
+                <button type="button" onClick={dropdownHandler}>
+                  <IconMore />
+                </button>
+                {dropdownOpen && (
+                  <ul>
+                    <li>
+                      <button type="button">
+                        <IconDelete />
+                        삭제하기
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button">
+                        <IconEdit />
+                        수정하기
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onClick={() => dropdownHandler()}>
+                        <IconCancel />
+                        취소하기
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              </div>
             </div>
           </div>
           <div className="content">
@@ -125,14 +172,40 @@ const FeedListItem = props => {
             <Portal>
               {modalOpen && (
                 <Modal
-                  // data={<Charge points={points} onClose={modalHandler} />}
+                  data={
+                    <FeedDetail
+                      text={text}
+                      refinedDate={refinedDate}
+                      images={images}
+                      commentCount={comment_count}
+                      nickname={nickname}
+                      profileImage={profile_image}
+                      defaultProfileImage={defaultProfileImage}
+                    />
+                  }
                   onClose={modalHandler}
                 />
               )}
             </Portal>
           </div>
-          <div>
-            [3차] 댓글 달기 영역: 로그인한 프로필 이미지 + textarea 처리 필요
+          <div className="comment-write">
+            <div className="comment-writer">
+              <img
+                src={profile_image === '' ? defaultProfileImage : profile_image}
+                alt={`${nickname} 님의 프로필 사진`}
+              />
+            </div>
+            <form className="comment-form" onSubmit={postComment}>
+              <fieldset>
+                <legend className="hidden">댓글 게시 양식</legend>
+                <textarea
+                  name="commentWrite"
+                  placeholder="댓글은 최대 100자까지 작성할 수 있습니다."
+                  maxLength={100}
+                ></textarea>
+              </fieldset>
+              <button type="submit">게시</button>
+            </form>
           </div>
         </div>
       </article>

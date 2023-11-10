@@ -1,6 +1,7 @@
 @charset "utf-8";
 @import '../../../../assets/scss/partials/media_query.scss',
   '../../../../assets/scss/partials/mixin.scss',
+  '../../../../assets/scss/partials/swiper.scss',
   '../../../../assets/scss/partials/theme.scss';
 
 @mixin theme(
@@ -33,6 +34,97 @@
             border-radius: 50%;
             object-fit: contain;
           }
+
+          div {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            span {
+              font-size: 12px;
+            }
+          }
+        }
+
+        .right-split {
+          .dropdown {
+            position: relative;
+            font-size: 0;
+
+            & > button {
+              font-size: inherit;
+
+              svg {
+                fill: $grayscale-1;
+
+                path {
+                  fill: inherit;
+                }
+              }
+
+              &:active {
+                svg {
+                  fill: $primary-color;
+                }
+              }
+            }
+
+            ul {
+              position: absolute;
+              top: 100%;
+              right: 0;
+              z-index: 10;
+              border-radius: 4px;
+              background-color: $grayscale-1;
+
+              li {
+                white-space: nowrap;
+
+                & + li {
+                  border-top: 1px $grayscale-5 solid;
+                }
+
+                &:first-child {
+                  button {
+                    color: $secondary-color;
+
+                    svg {
+                      fill: $secondary-color;
+                      path {
+                        fill: inherit;
+                      }
+                    }
+                  }
+                }
+
+                button {
+                  @include FlexCenter();
+                  gap: 8px;
+                  height: 50px;
+                  padding: 0 20px;
+                  font-size: 16px;
+                  color: $grayscale-6;
+
+                  svg {
+                    fill: $grayscale-6;
+                    path {
+                      fill: inherit;
+                    }
+                  }
+
+                  &:active {
+                    svg {
+                      fill: $primary-color;
+                    }
+                  }
+
+                  &:active {
+                    color: $primary-color;
+                  }
+                }
+              }
+            }
+          }
         }
 
         & + .content {
@@ -41,69 +133,6 @@
       }
 
       .content {
-        .swiper-area {
-          margin: 0;
-          font-size: 0;
-
-          .swiper {
-            border: 1px #eee solid;
-
-            .swiper-slide {
-              position: relative;
-              padding-bottom: 56.25%;
-
-              img {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                object-fit: contain;
-              }
-            }
-          }
-
-          .swiper-prev-btn,
-          .swiper-next-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.1);
-
-            svg {
-              fill: #fff;
-              path {
-                fill: inherit;
-              }
-            }
-
-            &:active {
-              svg {
-                fill: $primary-color;
-              }
-            }
-          }
-
-          .swiper-prev-btn {
-            left: 4px;
-          }
-
-          .swiper-next-btn {
-            right: 4px;
-          }
-
-          .swiper-pagination {
-            bottom: 12px;
-          }
-
-          .swiper-pagination-bullet-active {
-            background-color: $primary-color;
-          }
-        }
-
         p {
           @include Ellipsis($multi: true, $line: 3);
           margin-top: 12px;
@@ -117,6 +146,41 @@
           padding: 12px 0;
           font-size: 14px;
           color: $grayscale-2;
+        }
+      }
+
+      .comment-write {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .comment-writer {
+          img {
+            width: 24px;
+            height: 24px;
+            overflow: hidden;
+            object-fit: contain;
+          }
+        }
+
+        .comment-form {
+          display: flex;
+          align-items: center;
+          flex: 1;
+          font-size: 0;
+
+          fieldset {
+            flex: 1;
+          }
+
+          button {
+            height: 24px;
+            padding: 0 10px;
+
+            &:active {
+              color: $primary-color;
+            }
+          }
         }
       }
     }
