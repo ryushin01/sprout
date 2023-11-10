@@ -1,7 +1,8 @@
 // AWS
 // const BASE_URL = 'http://http://13.124.216.148/';
 
-const BASE_URL = 'http://10.58.52.197:8000';
+// NSH
+const BASE_URL = 'http://10.58.52.79:8000';
 
 export const API = {
   MAIN: `${BASE_URL}/main`,
