@@ -116,7 +116,66 @@ const FeedDetail = props => {
           </div>
           <div className="comment">
             <ul className="comment-list">
-              <li>1</li>
+              <li>
+                <div className="comment-writer">
+                  <img
+                    src={
+                      profileImage === '' ? defaultProfileImage : profileImage
+                    }
+                    alt={`${nickname} 님의 프로필 사진`}
+                  />
+                </div>
+                <div className="comment-content">
+                  <span>
+                    댓글이 길어지면 이렇게 됩니다. 댓글이 길어지면 이렇게
+                    됩니다. 댓글이 길어지면 이렇게 됩니다. 댓글이 길어지면
+                    이렇게 됩니다. 댓글이 길어지면 이렇게 됩니다. 댓글이
+                    길어지면 이렇게 됩니다. 댓글이 길어지면 이렇게 됩니다.
+                    댓글이 길어지면 이렇게 됩니다. 댓글이 길어지면 이렇게
+                    됩니다. 댓글이 길어지면 이렇게 됩니다. 댓글이 길어지면
+                    이렇게 됩니다. 댓글이 길어지면 이렇게 됩니다. 댓글이
+                    길어지면 이렇게 됩니다. 댓글이 길어지면 이렇게 됩니다.
+                  </span>
+                  <span>{refinedDate}</span>
+                </div>
+              </li>
+              <li>
+                <div className="comment-writer">
+                  <img
+                    src={
+                      profileImage === '' ? defaultProfileImage : profileImage
+                    }
+                    alt={`${nickname} 님의 프로필 사진`}
+                  />
+                </div>
+                <div className="comment-content">
+                  <span>
+                    댓글이 길어지면 이렇게 됩니다. 댓글이 길어지면 이렇게
+                    됩니다. 댓글이 길어지면 이렇게 됩니다. 댓글이 길어지면
+                    이렇게 됩니다. 댓글이 길어지면 이렇게 됩니다. 댓글이
+                    길어지면 이렇게 됩니다. 댓글이 길어지면 이렇게 됩니다.
+                    댓글이 길어지면 이렇게 됩니다. 댓글이 길어지면 이렇게
+                    됩니다. 댓글이 길어지면 이렇게 됩니다. 댓글이 길어지면
+                    이렇게 됩니다. 댓글이 길어지면 이렇게 됩니다. 댓글이
+                    길어지면 이렇게 됩니다. 댓글이 길어지면 이렇게 됩니다.
+                  </span>
+                  <span>{refinedDate}</span>
+                </div>
+              </li>
+              <li>
+                <div className="comment-writer">
+                  <img
+                    src={
+                      profileImage === '' ? defaultProfileImage : profileImage
+                    }
+                    alt={`${nickname} 님의 프로필 사진`}
+                  />
+                </div>
+                <div className="comment-content">
+                  <span>댓글</span>
+                  <span>{refinedDate}</span>
+                </div>
+              </li>
             </ul>
           </div>
           <div className="comment-write">
