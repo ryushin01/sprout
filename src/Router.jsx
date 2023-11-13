@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import Auth from './pages/Login/Auth/Auth';
 import Signup from './pages/signup/signup';
 import Feed from './pages/Feed/Feed';
+import NotFound from './pages/NotFound/NotFound';
 import InitializeScroll from './components/InitializeScroll/InitializeScroll';
 
 const Router = ({ userInfo, defaultProfileImage }) => {
@@ -27,6 +28,9 @@ const Router = ({ userInfo, defaultProfileImage }) => {
         />
 
         {/* <Route path="/userpage/:id" element={<userpage />} /> */}
+
+        {/*  */}
+        <Route path="/*" element={<NotFound />} />
       </Routes>
       <InitializeScroll />
     </BrowserRouter>

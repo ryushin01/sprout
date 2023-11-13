@@ -9,7 +9,7 @@ import axios from 'axios';
  */
 
 const Auth = () => {
-  // 3. 파라미터 중에서
+  // 3. 파라미터 중에서 code(카카오 쪽으로 전송해야 하는 고유 code)를 위한 useState
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -26,6 +26,8 @@ const Auth = () => {
     })
       .then(response => {
         console.log(response);
+
+        // 카카오 로그인 이후 추가 정보 입력을 위해 엑세스 토큰 발급하고 signup으로 네비게이팅
         localStorage.setItem('accessToken', response.accessToken);
         navigate('/signup');
       })
@@ -34,22 +36,7 @@ const Auth = () => {
       });
   };
 
-  // const getSnsCode = () => {
-  //   fetch(`${API.KAKAO_LOGIN}?code=${searchParam}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       console.log(result);
-  //     });
-  // };
-
   useEffect(() => {
-    // getSnsCode();
-
     getKakaoLogin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);

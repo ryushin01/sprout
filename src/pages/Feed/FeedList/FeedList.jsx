@@ -20,7 +20,7 @@ const FeedList = ({ userInfo, defaultProfileImage }) => {
       // url: 'http://localhost:8000/feed',
       headers: {
         'Content-Type': 'application/json',
-        // authorization: localStorage.getItem('accessToken'),
+        Authorization: localStorage.getItem('accessToken'),
       },
     })
       .then(response => {
