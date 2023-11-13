@@ -101,7 +101,7 @@ const Signup = () => {
       return;
     }
 
-    // 3. new 연산자로 FileReader 객체를 생성합니다.
+    // 3. new 연산자로 FileReader 객체를 생성합니다. (FileReader를 사용하는 방법: 이미지를 DataURI로 변경)
     const reader = new FileReader();
 
     // 4. 파일 객체를 읽은 후 데이터 URL로 변환합니다.
@@ -117,6 +117,16 @@ const Signup = () => {
 
     // 7. formData에 append를 사용해 key, value를 넣습니다.
     formData.append('files', file);
+
+    // FormData의 key 확인
+    // for (let key of formData.keys()) {
+    //   console.log(key);
+    // }
+
+    // FormData의 value 확인
+    // for (let value of formData.values()) {
+    //   console.log(value);
+    // }
 
     // 8. axios로 서버 전송을 준비합니다. native fetch에서 Content-Type은 multipart/form-data로 지정해야 하지만, axios에서는 기본값이 multipart/form-data입니다. 여기서는 명시하기 위해 작성합니다.
     axios({

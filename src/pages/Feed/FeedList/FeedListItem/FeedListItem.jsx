@@ -7,7 +7,7 @@ import { ReactComponent as IconPrevArrow } from '../../../../assets/images/icon_
 import { ReactComponent as IconNextArrow } from '../../../../assets/images/icon_next_arrow.svg';
 import Portal from '../../../../components/Modal/Portal';
 import Modal from '../../../../components/Modal/Modal';
-import FeedDetail from '../../../../components/Modal/Contents/FeedDetail';
+import FeedDetail from '../../../../components/Modal/Contents/FeedDetail/FeedDetail';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -24,7 +24,6 @@ import './FeedListItem.scss';
 const FeedListItem = props => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const defaultProfileImage = '/images/feed/default_profile_image.png';
 
   const {
     id,
@@ -36,6 +35,8 @@ const FeedListItem = props => {
     comment_count,
     nickname,
     profile_image,
+    defaultProfileImage,
+    profileImage,
   } = props;
 
   const dropdownHandler = () => {
@@ -191,7 +192,7 @@ const FeedListItem = props => {
           <div className="comment-write">
             <div className="comment-writer">
               <img
-                src={profile_image === '' ? defaultProfileImage : profile_image}
+                src={profileImage === '' ? defaultProfileImage : profileImage}
                 alt={`${nickname} 님의 프로필 사진`}
               />
             </div>
