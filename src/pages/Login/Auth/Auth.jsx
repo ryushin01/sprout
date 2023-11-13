@@ -34,22 +34,7 @@ const Auth = () => {
       });
   };
 
-  // const getSnsCode = () => {
-  //   fetch(`${API.KAKAO_LOGIN}?code=${searchParam}`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       console.log(result);
-  //     });
-  // };
-
   useEffect(() => {
-    // getSnsCode();
-
     getKakaoLogin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
