@@ -29,7 +29,7 @@ const Router = ({ userInfo, defaultProfileImage }) => {
 
         {/* <Route path="/userpage/:id" element={<userpage />} /> */}
 
-        {/*  */}
+        {/* 404 Error */}
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <InitializeScroll />
