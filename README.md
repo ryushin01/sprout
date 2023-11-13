@@ -2,10 +2,11 @@
 
 - 기술 스택
 
-  - <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&amp;logo=React&amp;logoColor=white">
+  - <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&amp;logo=React&amp;logoColor=black">
   - <img src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&amp;logo=Sass&amp;logoColor=white">
-  - <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&amp;logo=JavaScript&amp;logoColor=white">
+  - <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&amp;logo=JavaScript&amp;logoColor=black">
   - <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&amp;logo=Vite&amp;logoColor=white">
+  - <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&amp;logo=Axios&amp;logoColor=white">
   - <img src="https://img.shields.io/badge/Github-181717?style=flat-square&amp;logo=Github&amp;logoColor=white">
 
 - 구현 기능
