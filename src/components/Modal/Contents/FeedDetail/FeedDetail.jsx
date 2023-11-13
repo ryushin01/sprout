@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { ReactComponent as IconPrevArrow } from '../../../assets/images/icon_prev_arrow.svg';
-import { ReactComponent as IconNextArrow } from '../../../assets/images/icon_next_arrow.svg';
-import { ReactComponent as IconMore } from '../../../assets/images/icon_more.svg';
-import { ReactComponent as IconDelete } from '../../../assets/images/icon_delete.svg';
-import { ReactComponent as IconEdit } from '../../../assets/images/icon_edit.svg';
-import { ReactComponent as IconCancel } from '../../../assets/images/icon_close.svg';
+import { ReactComponent as IconPrevArrow } from '../../../../assets/images/icon_prev_arrow.svg';
+import { ReactComponent as IconNextArrow } from '../../../../assets/images/icon_next_arrow.svg';
+import { ReactComponent as IconMore } from '../../../../assets/images/icon_more.svg';
+import { ReactComponent as IconDelete } from '../../../../assets/images/icon_delete.svg';
+import { ReactComponent as IconEdit } from '../../../../assets/images/icon_edit.svg';
+import { ReactComponent as IconCancel } from '../../../../assets/images/icon_close.svg';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -189,7 +189,7 @@ const FeedDetail = props => {
               <fieldset>
                 <legend className="hidden">댓글 게시 양식</legend>
                 <textarea
-                  name="commentWrite"
+                  name="commentCreate"
                   placeholder="댓글은 최대 100자까지 작성할 수 있습니다."
                   maxLength={100}
                 ></textarea>

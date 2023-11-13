@@ -61,7 +61,7 @@
             &:active {
               svg {
                 path {
-                  stroke: $grayscale-1;
+                  stroke: $primary-color;
                 }
               }
             }
@@ -71,6 +71,7 @@
             svg {
               width: 38px;
               height: 38px;
+
               path:first-child {
                 display: none;
               }
@@ -93,6 +94,7 @@
           svg {
             width: 36px;
             height: 36px;
+
             path {
               stroke: $grayscale-2;
             }

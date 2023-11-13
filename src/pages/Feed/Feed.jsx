@@ -1,11 +1,14 @@
 import FeedList from './FeedList/FeedList';
 import './Feed.scss';
 
-const Feed = () => {
+const Feed = ({ userInfo, defaultProfileImage }) => {
   return (
     <main className="feed">
       <section className="feed-section">
-        <FeedList />
+        <FeedList
+          userInfo={userInfo}
+          defaultProfileImage={defaultProfileImage}
+        />
       </section>
     </main>
   );

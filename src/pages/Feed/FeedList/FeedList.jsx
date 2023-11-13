@@ -9,7 +9,7 @@ import '../Feed.scss';
  * @property {function} getFeedList           - 피드 목록 데이터를 받아오는 함수입니다.
  */
 
-const FeedList = () => {
+const FeedList = ({ userInfo, defaultProfileImage }) => {
   const [loading, setLoading] = useState(false);
   const [feedData, setFeedData] = useState([]);
 
@@ -42,6 +42,8 @@ const FeedList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const { profileImage } = userInfo;
+
   return (
     <>
       {loading && <Loading />}
@@ -73,6 +75,8 @@ const FeedList = () => {
                   comment_count={comment_count}
                   nickname={nickname}
                   profile_image={profile_image}
+                  defaultProfileImage={defaultProfileImage}
+                  profileImage={profileImage}
                 />
               </li>
             );

@@ -7,18 +7,24 @@ import Signup from './pages/signup/signup';
 import Feed from './pages/Feed/Feed';
 import InitializeScroll from './components/InitializeScroll/InitializeScroll';
 
-const Router = () => {
-  const isLogin = true;
-
+const Router = ({ userInfo, defaultProfileImage }) => {
   return (
     <BrowserRouter>
-      {isLogin && <Header />}
-      {isLogin && <Gnb />}
+      <Header />
+      <Gnb userInfo={userInfo} defaultProfileImage={defaultProfileImage} />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/feed" element={<Feed />} />
+        <Route
+          path="/feed"
+          element={
+            <Feed
+              userInfo={userInfo}
+              defaultProfileImage={defaultProfileImage}
+            />
+          }
+        />
 
         {/* <Route path="/userpage/:id" element={<userpage />} /> */}
       </Routes>
