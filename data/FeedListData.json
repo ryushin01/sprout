@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "text": "project zero",
+    "is_mine": true,
+    "user_id": 1,
+    "created_at": "2008-01-19 12:34:56",
+    "images": [
+      {
+        "src": "/images/feed/mockup/001/01.png",
+        "text": "류창선"
+      }
+    ],
+    "profile_image": "/images/feed/mockup/001/@profile_image.jpg",
+    "comment_count": 1,
+    "nickname": "ryushin0"
+  },
+  {
+    "id": 2,
+    "text": "인생 PC 게임: 창세기전 시리즈 (The War of Genesis Series / 인생 콘솔 게임: 파이널 판타지 VII (FINAL FANTASY VII) / 인생 보드 게임: 미씩 배틀: 판테온 (Mythic Battles: Pantheon) / 인생 영화: 너의 췌장을 먹고 싶어 (2017) / 인생 음악: 마크툽 (MAKTUB) - 오늘도 빛나는 너에게 (To You My Light) (Feat.이라온) / 인생 전자기기: 삼성 오디세이 Neo G9 / 인생 관심사: 신화 (Mythology) / 인생 애니메이션: 신세기 GPX 사이버 포뮬러 / 인생 소설: 가즈 나이트 (이경영 작가) / 인생 만화책: 제로 - 시작의 관 (박성우 작가)",
+    "is_mine": true,
+    "user_id": 1,
+    "created_at": "2014-08-19 12:34:56",
+    "images": [
+      {
+        "src": "/images/feed/mockup/002/01.png",
+        "text": "인생 PC 게임: 창세기전 시리즈 (The War of Genesis Series)"
+      },
+      {
+        "src": "/images/feed/mockup/002/02.png",
+        "text": "인생 콘솔 게임: 파이널 판타지 VII (FINAL FANTASY VII)"
+      },
+      {
+        "src": "/images/feed/mockup/002/03.png",
+        "text": "인생 보드 게임: 미씩 배틀: 판테온 (Mythic Battles: Pantheon)"
+      },
+      {
+        "src": "/images/feed/mockup/002/04.png",
+        "text": "인생 영화: 너의 췌장을 먹고 싶어 (2017)"
+      },
+      {
+        "src": "/images/feed/mockup/002/05.png",
+        "text": "인생 음악: 마크툽 (MAKTUB) - 오늘도 빛나는 너에게 (To You My Light) (Feat.이라온)"
+      },
+      {
+        "src": "/images/feed/mockup/002/06.png",
+        "text": "인생 전자기기: 삼성 오디세이 Neo G9"
+      },
+      {
+        "src": "/images/feed/mockup/002/07.png",
+        "text": "인생 관심사: 신화 (Mythology)"
+      },
+      {
+        "src": "/images/feed/mockup/002/08.png",
+        "text": "인생 애니메이션: 신세기 GPX 사이버 포뮬러"
+      },
+      {
+        "src": "/images/feed/mockup/002/09.png",
+        "text": "인생 소설: 가즈 나이트 (이경영 작가)"
+      },
+      {
+        "src": "/images/feed/mockup/002/10.png",
+        "text": "인생 만화책: 제로 - 시작의 관 (박성우 작가)"
+      }
+    ],
+    "profile_image": "/images/feed/mockup/002/@profile_image.jpg",
+    "comment_count": 1,
+    "nickname": "ryushin0"
+  },
+  {
+    "id": 3,
+    "text": "유신이 가장 아끼는 캠핑 장비 7종을 소개합니다. 1번은 현대 제네시스 G80, 2번은 노르디스크 아스가드르 12.6 + 집인플로어 세트, 3번은 ~",
+    "is_mine": false,
+    "user_id": 2,
+    "created_at": "2016-3-21 22:00:00",
+    "images": [
+      {
+        "src": "/images/feed/mockup/003/01.png",
+        "text": "현대 제네시스 G80"
+      },
+      {
+        "src": "/images/feed/mockup/003/02.png",
+        "text": "노르디스크 아스가드르 12.6 + 집인플로어 세트"
+      }
+    ],
+    "profile_image": "/images/feed/mockup/003/@profile_image.jpg",
+    "comment_count": 0,
+    "nickname": "ryushin1"
+  }
+]
