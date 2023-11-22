@@ -13,15 +13,14 @@ const FeedList = ({ userInfo, defaultProfileImage }) => {
   const [loading, setLoading] = useState(false);
   const [feedData, setFeedData] = useState([]);
 
-  // DTO: Data Transfer Object
-  const Dto = {
-    title: '',
-    subtitle: '',
+  // query string이 필요한 경우: 동적 라우팅, 페이지네이션, 필터 등
+  const params = {
+    id: 12345,
   };
 
   async function getFeedList() {
     try {
-      const response = await customAxios.get('FeedListData.json', { Dto });
+      const response = await customAxios.get('FeedListData.json', { params });
 
       if (response.status === 200) {
         setFeedData(response?.data.reverse());

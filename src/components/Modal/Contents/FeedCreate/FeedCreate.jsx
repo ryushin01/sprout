@@ -69,11 +69,9 @@ const FeedCreate = ({ nickname, profileImage, defaultProfileImage }) => {
 
     try {
       const response = await customAxios.post('url', {
-        // 10. data 안에 텍스트 데이터와 이미지 데이터를 넣고 서버 전송합니다.
-        data: {
-          text: feedText.feedCreate,
-          images: formData,
-        },
+        // 10. data 안에 텍스트 데이터와 이미지 데이터를 넣고 서버 전송합니다. (post인 경우: 데이터 전송 객체(DTO))
+        text: feedText.feedCreate,
+        images: formData,
       });
 
       if (response.status === 200) {
