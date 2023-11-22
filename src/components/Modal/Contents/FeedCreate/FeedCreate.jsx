@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { customAxios } from '../../../../modules/customAxios';
 import { ReactComponent as IconPrevArrow } from '../../../../assets/images/icon_prev_arrow.svg';
 import { ReactComponent as IconNextArrow } from '../../../../assets/images/icon_next_arrow.svg';
 import Button from '../../../Button/Button';
@@ -17,6 +17,9 @@ import './FeedCreate.scss';
  * @property {function} postFeedCreate        - 피드 작성을 위한 데이터를 서버로 전송하는 함수입니다.
  */
 
+// 8. 멀티 이미지 전송하기 위해 JavaScript 내장 객체인 formData를 생성합니다.
+const formData = new FormData();
+
 const FeedCreate = ({ nickname, profileImage, defaultProfileImage }) => {
   // 1. 멀티 이미지 업로드와 미리보기를 위한 useState를 만듭니다.
   const [feedImages, setFeedImages] = useState([]);
@@ -25,9 +28,6 @@ const FeedCreate = ({ nickname, profileImage, defaultProfileImage }) => {
   const [feedText, setFeedText] = useState({
     feedCreate: '',
   });
-
-  // 8. 멀티 이미지 전송하기 위해 JavaScript 내장 객체인 formData를 생성합니다.
-  const formData = new FormData();
 
   const typingSentry = e => {
     const { name, value } = e.target;
@@ -62,30 +62,27 @@ const FeedCreate = ({ nickname, profileImage, defaultProfileImage }) => {
 
     // 9. formData에 append를 사용해 key, value를 넣습니다.
     formData.append('files', imageLists);
-
-    // 10. axios로 서버 전송을 준비합니다. native fetch에서 Content-Type은 multipart/form-data로 지정해야 하지만, axios에서는 기본값이 multipart/form-data입니다. 여기서는 명시하기 위해 작성합니다.
-    axios({
-      method: 'post',
-      url: '/api/files/images',
-      data: formData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
   };
 
-  const postFeedCreate = e => {
+  async function postFeedCreate(e) {
     e.preventDefault();
 
-    axios({
-      method: 'post',
-      url: '/api/files/text',
-      data: feedText.feedCreate,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
+    try {
+      const response = await customAxios.post('url', {
+        // 10. data 안에 텍스트 데이터와 이미지 데이터를 넣고 서버 전송합니다.
+        data: {
+          text: feedText.feedCreate,
+          images: formData,
+        },
+      });
+
+      if (response.status === 200) {
+        console.log(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>

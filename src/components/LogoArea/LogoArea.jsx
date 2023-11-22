@@ -4,7 +4,7 @@ const LogoArea = () => {
   return (
     <div className="logo-area">
       <hgroup>
-        <h1>HOKI</h1>
+        <h1>sprout</h1>
         <h2>나를 담는 공간</h2>
       </hgroup>
     </div>

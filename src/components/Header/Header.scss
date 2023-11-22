@@ -30,12 +30,13 @@
         margin-top: 6px;
 
         &::before {
-          @include Position(absolute, $top: -10px, $left: -4px);
+          @include Position(absolute, $top: -6px, $left: -3px);
           content: '';
           display: block;
           width: 16px;
           height: 16px;
-          background: url(images/login/icon_hoki.png) no-repeat center/cover;
+          background: url(https://ryushin01.github.io/sprout/images/login/icon_hoki.png)
+            no-repeat center/cover;
         }
       }
     }

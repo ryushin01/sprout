@@ -128,7 +128,7 @@ const Signup = () => {
     //   console.log(value);
     // }
 
-    // 8. axios로 서버 전송을 준비합니다. native fetch에서 Content-Type은 multipart/form-data로 지정해야 하지만, axios에서는 기본값이 multipart/form-data입니다. 여기서는 명시하기 위해 작성합니다.
+    // 8. Axios로 서버 전송을 준비합니다. native fetch에서 Content-Type은 multipart/form-data로 지정해야 하지만, Axios에서는 기본값이 multipart/form-data입니다. 여기서는 명시하기 위해 작성합니다.
     axios({
       method: 'post',
       url: '/api/files/images',
@@ -139,20 +139,14 @@ const Signup = () => {
     });
   };
 
-  const postDuplicatedNickname = () => {
-    fetch('/data/duplicate.json', {
-      // fetch(`${API.USERS}/duplicate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
+  async function postDuplicatedNickname() {
+    try {
+      const response = await axios.post('/data/duplicate.json', {
         nickname: userInfo.nickname,
-      }),
-    })
-      .then(response => response.json())
-      .then(result => {
-        if (result.message === 'SUCCESS') {
+      });
+
+      if (response.status === 200) {
+        if (response.message === 'SUCCESS') {
           setIsDuplicatedNickname(false);
           alert('사용 가능한 닉네임입니다.');
         } else {
@@ -161,32 +155,31 @@ const Signup = () => {
         }
 
         nicknameRef.current.focus();
-      });
-  };
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-  const postSignup = e => {
+  async function postSignup(e) {
     e.preventDefault();
 
-    fetch('/data/signup.json', {
-      // fetch(`${API.USERS}/duplicate`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({
+    try {
+      const response = await axios.post('/data/signup.json', {
         nickname: userInfo.nickname,
         password: userInfo.password,
         interests: interests,
-      }),
-    })
-      .then(response => response.json())
-      .then(result => {
-        if (result.message === 'SUCCESS') {
-          console.log(result);
+      });
+
+      if (response.status === 200) {
+        if (response.message === 'SUCCESS') {
           setSignupComplete(true);
         }
-      });
-  };
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <main className="signup">

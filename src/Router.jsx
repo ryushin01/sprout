@@ -3,14 +3,13 @@ import Header from './components/Header/Header';
 import Gnb from './components/Gnb/Gnb';
 import Login from './pages/Login/Login';
 import Auth from './pages/Login/Auth/Auth';
-import Signup from './pages/signup/signup';
+import Signup from './pages/Signup/Signup';
 import Feed from './pages/Feed/Feed';
-import NotFound from './pages/NotFound/NotFound';
 import InitializeScroll from './components/InitializeScroll/InitializeScroll';
 
 const Router = ({ userInfo, defaultProfileImage }) => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/sprout">
       <Header />
       <Gnb userInfo={userInfo} defaultProfileImage={defaultProfileImage} />
       <Routes>
@@ -18,7 +17,7 @@ const Router = ({ userInfo, defaultProfileImage }) => {
         <Route path="/auth" element={<Auth />} />
         <Route path="/signup" element={<Signup />} />
         <Route
-          path="/feed"
+          path="feed"
           element={
             <Feed
               userInfo={userInfo}
@@ -26,11 +25,7 @@ const Router = ({ userInfo, defaultProfileImage }) => {
             />
           }
         />
-
-        {/* <Route path="/userpage/:id" element={<userpage />} /> */}
-
-        {/* 404 Error */}
-        <Route path="/*" element={<NotFound />} />
+        <Route path="/*" element={<Login />} />
       </Routes>
       <InitializeScroll />
     </BrowserRouter>

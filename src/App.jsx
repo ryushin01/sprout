@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import { customAxios } from './modules/customAxios';
 import Router from './Router';
 import './assets/scss/base/common.scss';
 
@@ -14,23 +14,17 @@ const App = () => {
       : targetRef.current.setAttribute('data-theme', 'light');
   };
 
-  const getUserInfo = () => {
-    axios({
-      method: 'get',
-      url: '/data/UserInfoData.json',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => {
-        if (response.status === 200) {
-          setUserInfo(response.data[0]);
-        }
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
-  };
+  async function getUserInfo() {
+    try {
+      const response = await customAxios.get('UserInfoData.json');
+
+      if (response.status === 200) {
+        setUserInfo(response.data[0]);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     getUserInfo();

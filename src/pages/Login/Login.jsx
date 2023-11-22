@@ -24,7 +24,7 @@ const Login = () => {
         <div className="sns-area">
           <button type="button">
             <img
-              src="/images/login/kakao_login_large_wide.png"
+              src="https://ryushin01.github.io/sprout/images/login/kakao_login_large_wide.png"
               alt="카카오 로그인"
               onClick={connectToKakaoLogin}
             />

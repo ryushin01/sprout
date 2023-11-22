@@ -4,8 +4,12 @@ import svgr from '@svgr/rollup';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/sprout',
   plugins: [svgr(), react()],
   server: {
     open: true,
+  },
+  build: {
+    chunkSizeWarningLimit: 1600,
   },
 });

@@ -1,12 +1,13 @@
 // AWS
 // const BASE_URL = 'http://http://13.124.216.148/';
 
-// NSH
-const BASE_URL = 'http://10.58.52.79:8000';
+// mockup
+const BASE_URL = 'https://ryushin01.github.io/sprout';
 
 export const API = {
-  MAIN: `${BASE_URL}/main`,
-  KAKAO_LOGIN: `${BASE_URL}/auth/kakao/callback`,
+  DATA: `${BASE_URL}/data`,
+  // MAIN: `${BASE_URL}/main`,
+  // KAKAO_LOGIN: `${BASE_URL}/auth/kakao/callback`,
 };
 
 // 사용하는 컴포넌트

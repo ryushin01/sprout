@@ -23,16 +23,18 @@
         font-size: 6rem;
 
         &::before {
-          @include Position(absolute, $top: -14px, $left: -6px);
+          @include Position(absolute, $top: 0, $left: 0);
           content: '';
           display: block;
           width: 32px;
           height: 32px;
-          background: url(images/login/icon_hoki.png) no-repeat center/cover;
+          background: url(https://ryushin01.github.io/sprout/images/login/icon_hoki.png)
+            no-repeat center/cover;
         }
       }
 
       h2 {
+        margin-top: 1rem;
         font-size: 2rem;
       }
     }

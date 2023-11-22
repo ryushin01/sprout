@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { customAxios } from '../../../modules/customAxios';
 import Loading from '../../Loading/Loading';
 import FeedListItem from './FeedListItem/FeedListItem';
 import '../Feed.scss';
@@ -13,28 +13,24 @@ const FeedList = ({ userInfo, defaultProfileImage }) => {
   const [loading, setLoading] = useState(false);
   const [feedData, setFeedData] = useState([]);
 
-  const getFeedList = () => {
-    axios({
-      method: 'get',
-      url: '/data/FeedListData.json',
-      // url: 'http://localhost:8000/feed',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('accessToken'),
-      },
-    })
-      .then(response => {
-        console.log(response);
-        if (response.status === 200) {
-          console.log(response);
-          setFeedData(response?.data.reverse());
-          setLoading(false);
-        }
-      })
-      .catch(error => {
-        console.log(error.message);
-      });
+  // DTO: Data Transfer Object
+  const Dto = {
+    title: '',
+    subtitle: '',
   };
+
+  async function getFeedList() {
+    try {
+      const response = await customAxios.get('FeedListData.json', { Dto });
+
+      if (response.status === 200) {
+        setFeedData(response?.data.reverse());
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     setLoading(true);
