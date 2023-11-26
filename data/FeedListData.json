@@ -93,25 +93,9 @@
   },
   {
     "id": 3,
-    "text": "라이징 스타",
-    "is_mine": false,
-    "user_id": 3,
-    "created_at": "2016-3-21 22:00:00",
-    "images": [
-      {
-        "src": "",
-        "text": "류창선"
-      }
-    ],
-    "profile_image": "https://ryushin01.github.io/sprout/images/feed/mockup/003/@profile_image.jpg",
-    "comment_count": 1,
-    "nickname": "AshSunrise"
-  },
-  {
-    "id": 5,
     "text": "라이징 스타(Rising Star): @wow_kimsohyun @j0i3n2a9 @minami_hamabe.official @rena_takeda",
     "is_mine": false,
-    "user_id": 5,
+    "user_id": 3,
     "created_at": "2008-01-19 12:34:56",
     "images": [
       {
