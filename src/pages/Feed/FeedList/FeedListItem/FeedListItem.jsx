@@ -105,6 +105,7 @@ const FeedListItem = props => {
                     <img
                       src="https://ryushin01.github.io/sprout/images/feed/icon_official.png"
                       alt="공식 인증 마크"
+                      className="official-mark"
                     />
                   )}
                 </strong>

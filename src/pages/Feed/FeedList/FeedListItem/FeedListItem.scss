@@ -28,17 +28,19 @@
           @include FlexCenter();
           gap: 12px;
 
-          img {
+          img:not(.official-mark) {
             width: 32px;
             height: 32px;
+            border: 2px transparent solid;
             border-radius: 50%;
             object-fit: contain;
 
-            border: 3px transparent solid;
-            background-image: linear-gradient(#fff, #fff),
-              linear-gradient(to right, red 0%, orange 100%);
-            background-origin: border-box;
-            background-clip: content-box, border-box;
+            &.hot-feed {
+              background-image: linear-gradient(#fff, #fff),
+                linear-gradient(to right, #2e86de 0%, #0abde3 100%);
+              background-origin: border-box;
+              background-clip: content-box, border-box;
+            }
           }
 
           div {
@@ -52,10 +54,12 @@
           }
 
           strong {
+            @include FlexCenter;
+            gap: 4px;
+
             img {
               width: 16px;
               height: 16px;
-              margin-left: 4px;
             }
           }
         }
