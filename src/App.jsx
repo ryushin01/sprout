@@ -6,7 +6,8 @@ import './assets/scss/base/common.scss';
 const App = () => {
   const [userInfo, setUserInfo] = useState({});
   const targetRef = useRef(null);
-  const defaultProfileImage = '/images/feed/default_profile_image.png';
+  const defaultProfileImage =
+    'https://ryushin01.github.io/sprout/images/feed/default_profile_image.png';
 
   const themeSwitcher = e => {
     e.target.checked

@@ -23,6 +23,7 @@ const FeedList = ({ userInfo, defaultProfileImage }) => {
       const response = await customAxios.get('FeedListData.json', { params });
 
       if (response.status === 200) {
+        console.log(response);
         setFeedData(response?.data.reverse());
         setLoading(false);
       }
@@ -55,6 +56,8 @@ const FeedList = ({ userInfo, defaultProfileImage }) => {
               comment_count,
               nickname,
               profile_image,
+              isOfficial,
+              isHot,
             },
             index,
           ) => {
@@ -69,6 +72,8 @@ const FeedList = ({ userInfo, defaultProfileImage }) => {
                   images={images}
                   comment_count={comment_count}
                   nickname={nickname}
+                  isOfficial={isOfficial}
+                  isHot={isHot}
                   profile_image={profile_image}
                   defaultProfileImage={defaultProfileImage}
                   profileImage={profileImage}

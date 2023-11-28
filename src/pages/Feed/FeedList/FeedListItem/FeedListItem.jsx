@@ -34,6 +34,8 @@ const FeedListItem = props => {
     images,
     comment_count,
     nickname,
+    isOfficial,
+    isHot,
     profile_image,
     defaultProfileImage,
     profileImage,
@@ -94,9 +96,18 @@ const FeedListItem = props => {
               <img
                 src={profile_image === '' ? defaultProfileImage : profile_image}
                 alt={`${nickname} 님의 프로필 사진`}
+                className={isHot ? 'hot-feed' : ''}
               />
               <div>
-                <strong>{nickname}</strong>
+                <strong>
+                  {nickname}
+                  {isOfficial && (
+                    <img
+                      src="https://ryushin01.github.io/sprout/images/feed/icon_official.png"
+                      alt="공식 인증 마크"
+                    />
+                  )}
+                </strong>
                 <span>{refinedDate}</span>
               </div>
             </div>
