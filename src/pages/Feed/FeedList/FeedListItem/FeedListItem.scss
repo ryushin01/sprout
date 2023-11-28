@@ -156,6 +156,9 @@
           margin-top: 12px;
           font-size: 16px;
           line-height: 1.5;
+
+          // json에 이스케이프 시퀀스 적용을 위한 CSS 소스 코드
+          white-space: pre-wrap;
         }
       }
 
