@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "text": "project zero\n인생 PC 게임: 창세기전 시리즈 (The War of Genesis Series / 인생 콘솔 게임: 파이널 판타지 VII (FINAL FANTASY VII) / 인생 보드 게임: 미씩 배틀: 판테온 (Mythic Battles: Pantheon) / 인생 영화: 너의 췌장을 먹고 싶어 (2017) / 인생 음악: 마크툽 (MAKTUB) - 오늘도 빛나는 너에게 (To You My Light) (Feat.이라온) / 인생 전자기기: 삼성 오디세이 Neo G9 / 인생 관심사: 신화 (Mythology) / 인생 애니메이션: 신세기 GPX 사이버 포뮬러 / 인생 소설: 가즈 나이트 (이경영 작가) / 인생 만화책: 제로 - 시작의 관 (박성우 작가)",
+    "text": "project zero\n\n인생 PC 게임: 창세기전 시리즈 (The War of Genesis Series / 인생 콘솔 게임: 파이널 판타지 VII (FINAL FANTASY VII) / 인생 보드 게임: 미씩 배틀: 판테온 (Mythic Battles: Pantheon) / 인생 영화: 너의 췌장을 먹고 싶어 (2017) / 인생 음악: 마크툽 (MAKTUB) - 오늘도 빛나는 너에게 (To You My Light) (Feat.이라온) / 인생 전자기기: 삼성 오디세이 Neo G9 / 인생 관심사: 신화 (Mythology) / 인생 애니메이션: 신세기 GPX 사이버 포뮬러 / 인생 소설: 가즈 나이트 (이경영 작가) / 인생 만화책: 제로 - 시작의 관 (박성우 작가)",
     "is_mine": true,
     "user_id": 1,
     "created_at": "2008-01-19 12:34:56",
@@ -55,7 +55,7 @@
   },
   {
     "id": 2,
-    "text": "유신이 가장 아끼는 캠핑 장비 7종을 소개합니다. 1번은 현대 제네시스 G80, 2번은 노르디스크 아스가드르 12.6 + 집인플로어 세트, 3번은 ~",
+    "text": "유신이 가장 아끼는 캠핑 장비 7종을 소개합니다.\n1. 현대 제네시스 G80\n2. 노르디스크 아스가드르 12.6 + 집인플로어 세트\n3. 노르디스크 카리 20 다이아몬드 타프\n4. 헬리녹스 코트 맥스 컨버터블\n5. 스노우피크 타키비 타프 (아이보리)\n6. 소토 윈드마스터\n7. 콜드스틸 탄토 나이프",
     "is_mine": false,
     "user_id": 2,
     "created_at": "2014-08-19 12:34:56",
@@ -70,7 +70,7 @@
       },
       {
         "src": "https://ryushin01.github.io/sprout/images/feed/mockup/002/03.png",
-        "text": "노르디스크 카리 20 다이아몬드"
+        "text": "노르디스크 카리 20 다이아몬드 타프"
       },
       {
         "src": "https://ryushin01.github.io/sprout/images/feed/mockup/002/04.png",
@@ -317,7 +317,7 @@
   },
   {
     "id": 13,
-    "text": "-",
+    "text": "0\n1",
     "is_mine": true,
     "user_id": 1,
     "created_at": "2008-01-19 12:34:56",
